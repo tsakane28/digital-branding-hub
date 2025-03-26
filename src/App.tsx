@@ -21,7 +21,7 @@ const App = () => (
     <CartProvider>
       <TooltipProvider>
         <Toaster />
-        <Sonner />
+        <Sonner theme="system" />
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Layout />}>

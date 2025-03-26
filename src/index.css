@@ -1,5 +1,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.cdnfonts.com/css/sf-pro-display');
 
 @tailwind base;
 @tailwind components;
@@ -7,7 +8,7 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 210 40% 98%;
     --foreground: 222 47% 11%;
 
     --card: 0 0% 100%;
@@ -16,24 +17,24 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
 
-    --primary: 215 70% 50%;
+    --primary: 220 70% 50%;
     --primary-foreground: 210 40% 98%;
 
-    --secondary: 215 25% 97%;
+    --secondary: 220 25% 97%;
     --secondary-foreground: 222 47% 11%;
 
-    --muted: 215 25% 97%;
-    --muted-foreground: 215 25% 40%;
+    --muted: 220 25% 97%;
+    --muted-foreground: 220 25% 40%;
 
-    --accent: 215 25% 97%;
+    --accent: 220 25% 97%;
     --accent-foreground: 222 47% 11%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 215 32% 92%;
-    --input: 215 32% 92%;
-    --ring: 215 32% 92%;
+    --border: 220 32% 92%;
+    --input: 220 32% 92%;
+    --ring: 220 32% 92%;
 
     --radius: 0.6rem;
 
@@ -45,45 +46,55 @@
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Neon colors - muted in light mode */
+    --neon-blue: 220 100% 65%;
+    --neon-red: 358 85% 60%;
+    --neon-purple: 270 100% 65%;
   }
 
   .dark {
-    --background: 223 47% 11%;
+    --background: 222 47% 7%;
     --foreground: 210 40% 98%;
 
-    --card: 223 47% 11%;
+    --card: 222 47% 10%;
     --card-foreground: 210 40% 98%;
 
-    --popover: 223 47% 11%;
+    --popover: 222 47% 11%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 215 70% 50%;
+    --primary: 358 85% 55%;
     --primary-foreground: 210 40% 98%;
 
-    --secondary: 215 25% 27%;
+    --secondary: 220 25% 17%;
     --secondary-foreground: 210 40% 98%;
 
-    --muted: 215 25% 27%;
-    --muted-foreground: 215 25% 70%;
+    --muted: 220 25% 17%;
+    --muted-foreground: 220 25% 70%;
 
-    --accent: 215 25% 27%;
+    --accent: 220 25% 17%;
     --accent-foreground: 210 40% 98%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 215 32% 32%;
-    --input: 215 32% 32%;
-    --ring: 215 32% 72%;
+    --border: 220 32% 22%;
+    --input: 220 32% 22%;
+    --ring: 220 32% 72%;
 
-    --sidebar-background: 240 5.9% 10%;
+    --sidebar-background: 222 47% 7%;
     --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary: 358 85% 55%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 240 3.7% 15.9%;
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Neon colors - vibrant in dark mode */
+    --neon-blue: 220 100% 65%;
+    --neon-red: 358 100% 65%;
+    --neon-purple: 270 100% 70%;
   }
 }
 
@@ -156,9 +167,20 @@
   transition: all 0.3s ease;
 }
 
+.dark .glass-card {
+  background: rgba(30, 30, 35, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+}
+
 .glass-card:hover {
   box-shadow: 0 10px 50px rgba(0, 0, 0, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.dark .glass-card:hover {
+  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 /* Service card styles */
@@ -170,9 +192,18 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
+.dark .service-card {
+  background: #1e1e23;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
 .service-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+.dark .service-card:hover {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
 /* Page transition animations */
@@ -194,4 +225,65 @@
 .page-exit-active {
   opacity: 0;
   transition: opacity 400ms;
+}
+
+/* 3D Elements */
+.perspective-container {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.transform-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease;
+}
+
+.transform-3d:hover {
+  transform: translateZ(20px) rotateX(5deg) rotateY(5deg);
+}
+
+/* Neon effects for dark mode */
+.dark .neon-text-blue {
+  color: hsl(var(--neon-blue));
+  text-shadow: 0 0 5px rgba(0, 100, 255, 0.5), 0 0 10px rgba(0, 100, 255, 0.3);
+}
+
+.dark .neon-text-red {
+  color: hsl(var(--neon-red));
+  text-shadow: 0 0 5px rgba(255, 0, 50, 0.5), 0 0 10px rgba(255, 0, 50, 0.3);
+}
+
+.dark .neon-border {
+  border: 1px solid hsl(var(--neon-blue));
+  box-shadow: 0 0 5px rgba(0, 100, 255, 0.5), inset 0 0 5px rgba(0, 100, 255, 0.2);
+}
+
+.dark .neon-glow {
+  filter: drop-shadow(0 0 8px hsla(var(--neon-blue)));
+  animation: glow 2s ease-in-out infinite;
+}
+
+/* Apple-inspired styles */
+.apple-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 16px;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.dark .apple-card {
+  background: rgba(30, 30, 35, 0.8);
+}
+
+.apple-button {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border-radius: 8px;
+}
+
+/* Floating element */
+.floating {
+  animation: float 6s ease-in-out infinite;
 }

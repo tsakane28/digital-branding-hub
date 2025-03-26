@@ -62,6 +62,12 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// Adding neon colors
+				neon: {
+					blue: 'hsl(var(--neon-blue))',
+					red: 'hsl(var(--neon-red))',
+					purple: 'hsl(var(--neon-purple))'
 				}
 			},
 			borderRadius: {
@@ -109,6 +115,18 @@ export default {
 				'scale-in': {
 					'0%': { opacity: '0', transform: 'scale(0.95)' },
 					'100%': { opacity: '1', transform: 'scale(1)' }
+				},
+				'glow': {
+					'0%, 100%': { 
+						filter: 'drop-shadow(0 0 8px hsla(var(--neon-blue)))' 
+					},
+					'50%': { 
+						filter: 'drop-shadow(0 0 16px hsla(var(--neon-blue)))' 
+					}
+				},
+				'float': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-15px)' }
 				}
 			},
 			animation: {
@@ -122,9 +140,11 @@ export default {
 				'slide-up': 'slide-up 0.7s ease-out',
 				'slide-down': 'slide-down 0.7s ease-out',
 				'scale-in': 'scale-in 0.7s ease-out',
+				'glow': 'glow 2s ease-in-out infinite',
+				'float': 'float 6s ease-in-out infinite',
 			},
 			fontFamily: {
-				sans: ['Inter', 'sans-serif'],
+				sans: ['SF Pro Display', 'Inter', 'sans-serif'],
 				display: ['SF Pro Display', 'Inter', 'sans-serif']
 			}
 		}
