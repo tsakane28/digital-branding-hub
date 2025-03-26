@@ -177,7 +177,7 @@ const ServicesPage = () => {
       </section>
 
       {/* Services Navigation */}
-      <section className="sticky top-16 z-40 bg-white border-b border-border shadow-sm">
+      <section className="sticky top-16 z-40 bg-secondry border-b border-border shadow-sm">
         <div className="container px-6 mx-auto">
           <div className="py-4 overflow-x-auto">
             <div className="flex space-x-6 min-w-max">
@@ -203,7 +203,7 @@ const ServicesPage = () => {
       </section>
 
       {/* Individual Services */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-secondry">
         <div className="container px-6 mx-auto">
           <div className="max-w-3xl mx-auto text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
@@ -300,7 +300,7 @@ const ServicesPage = () => {
                 <div 
                   key={pkg.id} 
                   className={`
-                    relative rounded-xl border bg-white shadow-sm transition-all duration-300 
+                    relative rounded-xl border bg-secondry shadow-sm transition-all duration-300 
                     hover:shadow-md animate-fade-up
                     ${pkg.recommended ? 'border-primary ring-1 ring-primary' : 'border-border'}
                   `}
@@ -355,7 +355,7 @@ const ServicesPage = () => {
       </section>
 
       {/* Process Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-secondry">
         <div className="container px-6 mx-auto">
           <div className="max-w-3xl mx-auto text-center mb-16">
             <div className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-primary/10 text-primary mb-4">
@@ -428,7 +428,7 @@ const ServicesPage = () => {
                   Contact Us
                 </Link>
               </Button>
-              <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10" asChild>
+              <Button size="lg" variant="outline" className="bg-primary text-white border-white hover:bg-white/10" asChild>
                 <Link to="/cart">
                   View Cart
                   <ArrowRight size={16} className="ml-2" />

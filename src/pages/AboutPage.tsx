@@ -15,32 +15,32 @@ interface TeamMember {
 const teamMembers: TeamMember[] = [
   {
     id: "1",
-    name: "Alex Moyo",
+    name: "Edgar Simbarashe Mazorodze ",
     role: "Founder & Creative Director",
-    bio: "With over 15 years of experience in branding and design, Alex brings creative vision and strategic insight to every project.",
-    image: "https://images.unsplash.com/photo-1531891570158-e71b35a485bc?q=80&w=1064&auto=format&fit=crop&ixlib=rb-4.0.3"
+    bio: "With over 10 years of experience in branding and design, Edgar brings creative vision and strategic insight to every project.",
+    image: "/public/about_thumb_2.jpg"
   },
   {
     id: "2",
-    name: "Tendai Manyika",
+    name: "Andrew Huje ",
     role: "Lead Graphic Designer",
-    bio: "Tendai combines technical expertise with an artistic eye to create stunning visual assets that capture brand essence.",
-    image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.0.3"
+    bio: "Andrew combines technical expertise with an artistic eye to create stunning visual assets that capture brand essence.",
+    image: "/public/about_thumb_1.jpg"
   },
   {
     id: "3",
-    name: "Farai Ndoro",
+    name: "Tsakane Shiri",
     role: "Web Development Lead",
-    bio: "Farai specializes in creating beautiful, functional websites that deliver exceptional user experiences.",
-    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.0.3"
+    bio: "Tsakane specializes in creating beautiful, functional websites that deliver exceptional user experiences.",
+    image: "/public/munashe.jpg"
   },
-  {
-    id: "4",
-    name: "Chido Marondera",
-    role: "Marketing Specialist",
-    bio: "Chido crafts effective marketing strategies that help brands connect with their target audiences and drive results.",
-    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.0.3"
-  }
+  // {
+  //   id: "4",
+  //   name: "Chido Marondera",
+  //   role: "Marketing Specialist",
+  //   bio: "Chido crafts effective marketing strategies that help brands connect with their target audiences and drive results.",
+  //   image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.0.3"
+  // }
 ];
 
 const values = [
@@ -136,7 +136,7 @@ const AboutPage = () => {
       </section>
 
       {/* Story Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-secondry">
         <div className="container px-6 mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className={`relative animate-fade-right transition-opacity duration-1000 ${isImagesLoaded ? 'opacity-100' : 'opacity-0'}`}>
@@ -192,7 +192,7 @@ const AboutPage = () => {
             {values.map((value, index) => (
               <div 
                 key={index} 
-                className="bg-white p-6 rounded-xl border border-border animate-fade-up"
+                className="bg-secondry p-6 rounded-xl border border-border animate-fade-up"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
@@ -207,7 +207,7 @@ const AboutPage = () => {
       </section>
 
       {/* Team Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-secondry">
         <div className="container px-6 mx-auto">
           <div className="max-w-3xl mx-auto text-center mb-16">
             <div className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-primary/10 text-primary mb-4">
@@ -225,7 +225,7 @@ const AboutPage = () => {
             {teamMembers.map((member, index) => (
               <div 
                 key={member.id} 
-                className="bg-white rounded-xl overflow-hidden border border-border shadow-sm hover:shadow-md transition-shadow animate-fade-up"
+                className="bg-secondry rounded-xl overflow-hidden border border-border shadow-sm hover:shadow-md transition-shadow animate-fade-up"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 <div className="aspect-[3/4] relative overflow-hidden">
@@ -278,7 +278,7 @@ const AboutPage = () => {
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
                   <div className="lg:w-1/2 flex lg:justify-end">
-                    <div className={`bg-white p-6 rounded-xl border border-border shadow-sm w-full relative ${index % 2 === 0 ? 'lg:text-right' : ''}`}>
+                    <div className={`bg-secondry p-6 rounded-xl border border-border shadow-sm w-full relative ${index % 2 === 0 ? 'lg:text-right' : ''}`}>
                       <div className="absolute top-6 lg:top-1/2 -left-4 lg:left-auto lg:-right-10 lg:transform lg:-translate-y-1/2 h-8 w-8 rounded-full bg-primary flex items-center justify-center text-white">
                         {index + 1}
                       </div>
@@ -309,7 +309,7 @@ const AboutPage = () => {
               <Button size="lg" variant="secondary" asChild>
                 <Link to="/services">Our Services</Link>
               </Button>
-              <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10" asChild>
+              <Button size="lg" variant="outline" className="bg-primary text-white border-white hover:bg-white/10" asChild>
                 <Link to="/contact">
                   Contact Us
                   <ArrowRight size={16} className="ml-2" />

@@ -44,7 +44,7 @@ const Navbar = () => {
     <header
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         isScrolled 
-          ? "bg-white/90 backdrop-blur-md shadow-sm" 
+          ? "bg-blue/90 backdrop-blur-md shadow-sm" 
           : "bg-transparent"
       }`}
     >
@@ -54,7 +54,7 @@ const Navbar = () => {
             to="/" 
             className="text-2xl font-display font-bold tracking-tight"
           >
-            Reserved<span className="text-primary">Digital</span>
+            <img src="./../../public/logo.png" alt="" /><span className="text-primary"></span>
           </Link>
 
           {/* Desktop Navigation */}

@@ -14,7 +14,7 @@ const Footer = () => {
           <div className="space-y-4">
             <Link to="/" className="inline-block">
               <h2 className="text-xl font-display font-bold tracking-tight">
-                Reserved<span className="text-primary">Digital</span>
+                <img src="./../../public/logo.png" alt="" /><span className="text-primary"></span>
               </h2>
             </Link>
             <p className="text-muted-foreground max-w-xs">
@@ -22,7 +22,7 @@ const Footer = () => {
             </p>
             <div className="flex space-x-4">
               <a 
-                href="https://facebook.com" 
+                href="https://www.facebook.com/reserveddigital" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-colors"
@@ -31,7 +31,7 @@ const Footer = () => {
                 <Facebook size={20} />
               </a>
               <a 
-                href="https://instagram.com" 
+                href="https://www.instagram.com/reservedbranding/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-colors"

@@ -64,7 +64,7 @@ const ContactPage = () => {
       </section>
 
       {/* Contact Form & Info */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-secondry">
         <div className="container px-6 mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             <div className="animate-fade-right">
@@ -124,7 +124,7 @@ const ContactPage = () => {
             </div>
 
             <div className="animate-fade-left">
-              <div className="bg-white p-8 rounded-xl border border-border shadow-sm">
+              <div className="bg-secondry p-8 rounded-xl border border-border shadow-sm">
                 <h3 className="text-2xl font-display font-bold mb-6">Send Us a Message</h3>
                 
                 <form onSubmit={handleSubmit} className="space-y-6">
@@ -245,7 +245,7 @@ const ContactPage = () => {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-secondry">
         <div className="container px-6 mx-auto">
           <div className="max-w-3xl mx-auto text-center mb-16">
             <div className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-primary/10 text-primary mb-4">

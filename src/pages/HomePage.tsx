@@ -471,7 +471,7 @@ const HomePage = () => {
               <Button size="lg" variant="secondary" asChild className="dark:neon-glow">
                 <Link to="/services">Explore Services</Link>
               </Button>
-              <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10 dark:neon-border" asChild>
+              <Button size="lg" variant="outline" className="bg-primary text-white border-white hover:bg-white/10 dark:neon-border" asChild>
                 <Link to="/contact">
                   Get Started
                   <ArrowRight size={16} className="ml-2" />

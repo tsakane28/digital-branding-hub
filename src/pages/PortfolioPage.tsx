@@ -141,7 +141,7 @@ const PortfolioPage = () => {
       </section>
 
       {/* Featured Projects */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-secondry">
         <div className="container px-6 mx-auto">
           <div className="max-w-3xl mx-auto text-center mb-16">
             <div className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-primary/10 text-primary mb-4">
@@ -216,8 +216,8 @@ const PortfolioPage = () => {
                   key={category}
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                     activeCategory === category
-                      ? "bg-primary text-white"
-                      : "bg-white hover:bg-gray-100"
+                      ? "bg-primary text-black"
+                      : "bg-primary hover:bg-secondry"
                   }`}
                   onClick={() => setActiveCategory(category)}
                 >
@@ -232,7 +232,7 @@ const PortfolioPage = () => {
               <div 
                 key={project.id} 
                 id={project.id}
-                className="group bg-white rounded-xl overflow-hidden border border-border shadow-sm hover:shadow-md transition-shadow animate-fade-up"
+                className="group bg-secondry rounded-xl overflow-hidden border border-border shadow-sm hover:shadow-md transition-shadow animate-fade-up"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 <div className="aspect-[3/2] relative overflow-hidden">
@@ -277,7 +277,7 @@ const PortfolioPage = () => {
                   Get Started
                 </Link>
               </Button>
-              <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10" asChild>
+              <Button size="lg" variant="outline" className="bg-primary text-white border-white hover:bg-white/10" asChild>
                 <Link to="/services">
                   View Services
                   <ArrowRight size={16} className="ml-2" />
