@@ -18,14 +18,14 @@ const teamMembers: TeamMember[] = [
     name: "Edgar Simbarashe Mazorodze ",
     role: "Founder & Creative Director",
     bio: "With over 10 years of experience in branding and design, Edgar brings creative vision and strategic insight to every project.",
-    image: "/public/about_thumb_2.jpg"
+    image: "/public/simba.jpg"
   },
   {
     id: "2",
     name: "Andrew Huje ",
     role: "Lead Graphic Designer",
     bio: "Andrew combines technical expertise with an artistic eye to create stunning visual assets that capture brand essence.",
-    image: "/public/about_thumb_1.jpg"
+    image: "/public/andrew.jpg"
   },
   {
     id: "3",
