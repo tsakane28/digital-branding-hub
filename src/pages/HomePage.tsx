@@ -249,19 +249,22 @@ const HomePage = () => {
 
           <div className="relative max-w-4xl mx-auto apple-card overflow-hidden shadow-xl">
             <div className="aspect-w-16 aspect-h-9 relative">
-              <video 
-                ref={videoRef}
-                className="w-full object-cover" 
-                poster="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3"
-                muted
-                loop
-              >
-                <source src="https://player.vimeo.com/external/552651144.sd.mp4?s=16bd59c0f21ddaf93bebd95cf1144e5d222605ad&profile_id=165&oauth2_token_id=57447761" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
+            <video 
+              ref={videoRef}
+              className="w-full object-cover" 
+              poster="/public/video-poster.jpg" // Use an actual image file as the poster
+              muted
+              loop
+              autoPlay
+              playsInline // Ensures it plays on mobile without fullscreen issues
+            >
+              <source src="/public/video.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+
               
               <div className="absolute inset-0 flex items-center justify-center">
-                <Button 
+                {/* <Button 
                   onClick={toggleVideo}
                   variant="secondary" 
                   size="icon" 
@@ -272,7 +275,7 @@ const HomePage = () => {
                   ) : (
                     <Play className="h-8 w-8 ml-1" />
                   )}
-                </Button>
+                </Button> */}
               </div>
             </div>
           </div>
