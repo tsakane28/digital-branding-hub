@@ -40,21 +40,21 @@ const services: Service[] = [
     name: "Video Production",
     price: 1800,
     description: "Professional video production services including concept development, filming, editing, and final delivery in multiple formats.",
-    image: "https://images.unsplash.com/photo-1579165466741-7f35e4755183?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.0.3"
+    image: "/public/video_production.jpg"
   },
   {
     id: "vehicle-branding",
     name: "Vehicle Branding",
     price: 950,
     description: "Professional vehicle branding service including design, production, and application of high-quality vehicle wraps and graphics.",
-    image: "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3"
+    image: "/public/Motor-vehicle-branding.jpg"
   },
   {
     id: "promotional-items",
     name: "Promotional Items",
     price: 750,
     description: "Custom branded promotional items including apparel, stationery, and merchandise with your logo and brand elements.",
-    image: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3"
+    image: "/public/hoodie.jpg"
   },
   {
     id: "social-media",
@@ -177,7 +177,7 @@ const ServicesPage = () => {
       </section>
 
       {/* Services Navigation */}
-      <section className="sticky top-16 z-40 bg-secondry border-b border-border shadow-sm">
+      <section className="sticky top-16 z-40 bg-blue/90 backdrop-blur-md border-b border-border shadow-sm">
         <div className="container px-6 mx-auto">
           <div className="py-4 overflow-x-auto">
             <div className="flex space-x-6 min-w-max">
@@ -187,7 +187,7 @@ const ServicesPage = () => {
                   className={`text-sm font-medium whitespace-nowrap pb-1 ${
                     activeSection === service.id
                       ? "text-primary border-b-2 border-primary"
-                      : "text-muted-foreground hover:text-foreground"
+                      : "text-slate-400 hover:text-sky-600"
                   }`}
                   onClick={() => {
                     serviceRefs.current[service.id]?.scrollIntoView({ behavior: "smooth", block: "center" });

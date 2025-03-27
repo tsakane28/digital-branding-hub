@@ -102,24 +102,45 @@ const features = [
 const recentProjects = [
   {
     id: "legal-counsel",
-    title: "Legal Firm Rebrand",
-    client: "Sithole Legal Counsel",
-    image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3",
+    title: "Fuel Company Rebrand",
+    client: "Velvet Gas",
+    image: "/public/velvet_branding.png",
     type: "Brand Identity"
   },
   {
     id: "gift-ecommerce",
-    title: "E-commerce Platform",
-    client: "Dial-A-Gift",
-    image: "https://images.unsplash.com/photo-1627843240167-b1f9309a259d?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.0.3",
-    type: "Web Development"
+    title: "Liquor Store Branding",
+    client: "Hangover Liquor Store",
+    image: "/public/hangover_branding.png",
+    type: "Branding"
   },
   {
     id: "beauty-brand",
-    title: "Beauty Brand Launch",
-    client: "The Face Dresser",
-    image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=1480&auto=format&fit=crop&ixlib=rb-4.0.3",
-    type: "Branding & Social Media"
+    title: "Electric Van Vehicle Wrapping",
+    client: "Vehicle Wrapping",
+    image: "/public/Motor-vehicle-branding.jpg",
+    type: "Vinyl Branding",
+  },
+  {
+    id: "beauty-brand",
+    title: "Premise Branding",
+    client: "Rabbit Hole",
+    image: "/public/branding.jpg",
+    type: "Brand Identity"
+  },
+  {
+    id: "beauty-brand",
+    title: "Co-operate Branding",
+    client: "Ground Up",
+    image: "/public/GroundUpUmbrellas.jpg",
+    type: "Brand Identity"
+  },
+  {
+    id: "beauty-brand",
+    title: "Coperate Gifts",
+    client: "Old Mutual",
+    image: "/public/oldm.png",
+    type: "Brand Identity"
   }
 ];
 
@@ -186,13 +207,21 @@ const HomePage = () => {
                   </Link>
                 </Button>
               </div>
+            
               <div className="pt-2">
                 <p className="text-sm text-muted-foreground mb-3">Trusted by organizations like:</p>
                 <div className="flex flex-wrap gap-6">
-                  <span className="text-muted-foreground/70 font-medium">Dial-A-Gift</span>
-                  <span className="text-muted-foreground/70 font-medium">The Face Dresser</span>
-                  <span className="text-muted-foreground/70 font-medium">Sithole Legal</span>
+                  <span className="text-muted-foreground/70 font-medium">
+                    <img src="/velvet.png" alt="Velvet" className="w-24 h-auto" />
+                  </span>
+                  <span className="text-muted-foreground/70 font-medium">
+                    <img src="/Daruler.png" alt="Daruler" className="w-24 h-auto" />
+                  </span>
+                  <span className="text-muted-foreground/70 font-medium">
+                    <img src="/hangover.png" alt="Hangover" className="w-14 h-auto" />
+                  </span>
                 </div>
+
               </div>
             </div>
 

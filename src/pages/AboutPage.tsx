@@ -142,7 +142,7 @@ const AboutPage = () => {
             <div className={`relative animate-fade-right transition-opacity duration-1000 ${isImagesLoaded ? 'opacity-100' : 'opacity-0'}`}>
               <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-xl">
                 <img 
-                  src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=2670&ixlib=rb-4.0.3" 
+                  src="/public/about_thumb_1.png" 
                   alt="Our team working together" 
                   className={`object-cover w-full h-full pixelated-load ${isImagesLoaded ? 'loaded' : ''}`}
                 />

@@ -291,7 +291,7 @@ const CartPage = () => {
                   Schedule a Consultation
                 </Link>
               </Button>
-              <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10" asChild>
+              <Button size="lg" variant="outline" className="bg-primary text-white border-white hover:bg-white/10" asChild>
                 <Link to="/services">
                   Browse Services
                   <ArrowRight size={16} className="ml-2" />

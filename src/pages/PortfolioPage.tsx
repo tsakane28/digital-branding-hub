@@ -26,71 +26,72 @@ const categories = [
 
 const projects: Project[] = [
   {
-    id: "dial-a-gift",
-    title: "Brand Refresh & E-commerce Platform",
-    client: "Dial-A-Gift",
-    category: "Branding",
-    description: "Complete brand refresh including logo redesign, visual identity system, and custom e-commerce website development.",
-    image: "https://images.unsplash.com/photo-1627843240167-b1f9309a259d?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.0.3",
+    id: "zimbabwe-tshirts",
+    title: "Zimbabwe T-Shirts Collection",
+    client: "RESERVED",
+    category: "Fashion",
+    description: "Designed a unique T-shirt collection celebrating Zimbabwean culture, incorporating traditional patterns and modern aesthetics.",
+    image: "/public/Zimbabwe_tees.jpg",
     featured: true
   },
   {
-    id: "face-dresser",
-    title: "Luxury Beauty Brand Identity",
-    client: "The Face Dresser",
+    id: "we-meat-logo",
+    title: "We Meat Logo & Branding",
+    client: "We Meat Butchery",
     category: "Branding",
-    description: "Development of sophisticated brand identity for a premium beauty services provider, including packaging and digital assets.",
-    image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=1480&auto=format&fit=crop&ixlib=rb-4.0.3",
+    description: "Developed a bold and memorable brand identity for a premium butchery, including a logo and packaging designs.",
+    image: "/public/We Meat Logo 3.jpg",
     featured: true
   },
   {
-    id: "sithole-legal",
-    title: "Corporate Identity & Website",
-    client: "Sithole Legal Counsel",
-    category: "Web Design",
-    description: "Professional corporate identity and responsive website design for a leading law firm, projecting authority and trustworthiness.",
-    image: "https://images.unsplash.com/photo-1604537372111-13b49dfdde73?q=80&w=1469&auto=format&fit=crop&ixlib=rb-4.0.3",
-    featured: true
-  },
-  {
-    id: "blue-water",
-    title: "Brand Identity & Packaging",
-    client: "Blue Water Fisheries",
-    category: "Branding",
-    description: "Comprehensive branding and packaging design for a sustainable seafood company, highlighting product quality and environmental values.",
-    image: "https://images.unsplash.com/photo-1609146708744-33bc775ded01?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3"
-  },
-  {
-    id: "green-farms",
-    title: "Product Packaging & Labels",
-    client: "Green Farms Organic",
-    category: "Print",
-    description: "Eco-friendly packaging design and product labels for an organic food producer, emphasizing sustainability and natural ingredients.",
-    image: "https://images.unsplash.com/photo-1560858070-dfa4a97b3e80?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.0.3"
-  },
-  {
-    id: "urban-clothing",
-    title: "Fashion Brand & Campaign",
-    client: "Urban Street Clothing",
-    category: "Photography",
-    description: "Brand identity, lookbook photography, and social media campaign for a contemporary urban fashion brand.",
-    image: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3"
-  },
-  {
-    id: "tech-solutions",
-    title: "Technology Brand Identity",
-    client: "Infinity Tech Solutions",
-    category: "Branding",
-    description: "Modern brand identity and digital presence for a technology solutions provider, communicating innovation and reliability.",
-    image: "https://images.unsplash.com/photo-1581090700227-1429bedaac4d?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3"
-  },
-  {
-    id: "social-media-campaign",
-    title: "Social Media Campaign",
-    client: "Vibrant Cosmetics",
+    id: "social-media-management",
+    title: "Social Media Management",
+    client: "Digital Trends Agency",
     category: "Social Media",
-    description: "Engaging social media content strategy and campaign execution for a cosmetics brand's product launch.",
-    image: "https://images.unsplash.com/photo-1599100605225-1687ac86576a?q=80&w=1377&auto=format&fit=crop&ixlib=rb-4.0.3"
+    description: "Implemented an effective social media strategy to enhance engagement and brand awareness for a fast-growing digital agency.",
+    image: "/public/socialm.png",
+    featured: true
+  },
+  {
+    id: "victoria-foods-logo",
+    title: "Victoria Foods Logo Redesign",
+    client: "Victoria Foods",
+    category: "Branding",
+    description: "Revamped the brand identity of Victoria Foods with a fresh, modern logo reflecting quality and tradition in food production.",
+    image: "/public/Victoria Foods 2.jpg",
+    featured: true
+  },
+  {
+    id: "wednesday-tshirts",
+    title: "Wednesday T-Shirts Branding",
+    client: "Casual Wear Co.",
+    category: "Fashion",
+    description: "Created a stylish and minimalistic T-shirt design series, focusing on everyday fashion with a modern touch.",
+    image: "/public/Wednesday Steps.jpg"
+  },
+  {
+    id: "baby-photography",
+    title: "Baby Photography Session",
+    client: "Olivia Images",
+    category: "Photography",
+    description: "Captured heartwarming baby portraits with soft lighting and creative setups, delivering timeless family memories.",
+    image: "/public/baby.png"
+  },
+  {
+    id: "event-videography",
+    title: "Professional Event Videography",
+    client: "Elite Visuals",
+    category: "Videography",
+    description: "Produced high-quality event video coverage, capturing the most memorable moments with cinematic storytelling.",
+    image: "/public/video_production.jpg"
+  },
+  {
+    id: "old-mutual-backpack",
+    title: "Old Mutual Branded Backpack",
+    client: "Old Mutual",
+    category: "Merchandise",
+    description: "Designed and produced a stylish, durable backpack with the Old Mutual branding for corporate giveaways and promotions.",
+    image: "/public/backpack.png"
   }
 ];
 
@@ -216,8 +217,8 @@ const PortfolioPage = () => {
                   key={category}
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                     activeCategory === category
-                      ? "bg-primary text-black"
-                      : "bg-primary hover:bg-secondry"
+                      ? "bg-primary text-white"
+                      : "bg-gray-300 hover:text-secondry"
                   }`}
                   onClick={() => setActiveCategory(category)}
                 >

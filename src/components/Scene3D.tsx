@@ -21,7 +21,7 @@ const Scene3D = ({ className }: Scene3DProps) => {
     
     // Setup camera
     const camera = new THREE.PerspectiveCamera(
-      75,
+      50,
       containerRef.current.clientWidth / containerRef.current.clientHeight,
       0.1,
       1000
