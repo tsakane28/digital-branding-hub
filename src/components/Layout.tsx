@@ -5,6 +5,14 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Meta from "./SEO/Meta";
+import CallToAction from "./CallToAction";
+
+// Define default meta information for SEO
+const defaultMeta = {
+  title: "Reserved Digital Branding | Premium Digital Branding & Marketing",
+  description: "Reserved Digital Branding is a premium digital branding agency offering comprehensive branding, web design, graphic design, and marketing services in Zimbabwe.",
+};
 
 const Layout = () => {
   const location = useLocation();
@@ -16,6 +24,51 @@ const Layout = () => {
     
     return savedTheme === 'dark' || (!savedTheme && prefersDark);
   });
+
+  // Get meta information based on current route
+  const getMetaForRoute = () => {
+    const path = location.pathname;
+    
+    switch (path) {
+      case '/':
+        return {
+          title: "Home | Reserved Digital Branding",
+          description: "Welcome to Reserved Digital Branding, Zimbabwe's premium digital branding and marketing agency. Elevate your brand with our expert services.",
+        };
+      case '/about':
+        return {
+          title: "About Us | Reserved Digital Branding",
+          description: "Learn about Reserved Digital Branding, our team, mission, vision, and commitment to excellence in branding and digital marketing.",
+        };
+      case '/services':
+        return {
+          title: "Services | Reserved Digital Branding",
+          description: "Explore our comprehensive range of branding, web design, graphic design, and marketing services tailored to elevate your brand.",
+        };
+      case '/portfolio':
+        return {
+          title: "Portfolio | Reserved Digital Branding",
+          description: "View our portfolio of successful projects and see how we've helped businesses transform their brand identity and digital presence.",
+        };
+      case '/contact':
+        return {
+          title: "Contact Us | Reserved Digital Branding",
+          description: "Get in touch with Reserved Digital Branding for premium branding and marketing services. Request a quote or consultation today.",
+        };
+      case '/shop':
+        return {
+          title: "Shop | Reserved Digital Branding",
+          description: "Browse and purchase high-quality branded merchandise, marketing materials, and custom design services from Reserved Digital Branding.",
+        };
+      case '/cart':
+        return {
+          title: "Shopping Cart | Reserved Digital Branding",
+          description: "View your selected items and complete your purchase from Reserved Digital Branding's range of premium products and services.",
+        };
+      default:
+        return defaultMeta;
+    }
+  };
   
   // Apply dark mode
   useEffect(() => {
@@ -39,28 +92,44 @@ const Layout = () => {
     setIsDarkMode(!isDarkMode);
   };
 
+  // Get the current route's meta information
+  const currentMeta = getMetaForRoute();
+
+  // Determine whether to show CTA (not on contact or cart pages)
+  const showCTA = !['/contact', '/cart'].includes(location.pathname);
+
   return (
-    <div className="flex flex-col min-h-screen">
-      <Navbar />
-      <main className={`flex-grow transition-opacity duration-500 ${isPageLoaded ? 'opacity-100' : 'opacity-0'}`}>
-        <Outlet />
-      </main>
-      <Footer />
+    <>
+      <Meta 
+        title={currentMeta.title} 
+        description={currentMeta.description} 
+        ogUrl={`https://reserveddigitalbranding.com${location.pathname}`}
+      />
       
-      {/* Theme toggle button */}
-      <Button 
-        onClick={toggleTheme}
-        variant="outline" 
-        size="icon" 
-        className="fixed right-4 bottom-4 z-50 rounded-full w-12 h-12 apple-button shadow-lg"
-      >
-        {isDarkMode ? (
-          <Sun className="h-5 w-5 text-yellow-400" />
-        ) : (
-          <Moon className="h-5 w-5" />
-        )}
-      </Button>
-    </div>
+      <div className="flex flex-col min-h-screen">
+        <Navbar />
+        <main className={`flex-grow transition-opacity duration-500 ${isPageLoaded ? 'opacity-100' : 'opacity-0'}`}>
+          <Outlet />
+          
+          {showCTA && <CallToAction className="mt-16 md:mt-24" />}
+        </main>
+        <Footer />
+        
+        {/* Theme toggle button */}
+        <Button 
+          onClick={toggleTheme}
+          variant="outline" 
+          size="icon" 
+          className="fixed right-4 bottom-4 z-50 rounded-full w-12 h-12 apple-button shadow-lg"
+        >
+          {isDarkMode ? (
+            <Sun className="h-5 w-5 text-yellow-400" />
+          ) : (
+            <Moon className="h-5 w-5" />
+          )}
+        </Button>
+      </div>
+    </>
   );
 };
 

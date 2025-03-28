@@ -1,11 +1,15 @@
 
 import { Link } from "react-router-dom";
-import { Facebook, Instagram, Twitter, Mail, Phone, MapPin } from "lucide-react";
+import { Facebook, Instagram, Twitter, Mail, Phone, MapPin, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useLanguage } from "@/context/LanguageContext";
+import { translations } from "@/translations";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const { language } = useLanguage();
+  const t = translations[language];
 
   return (
     <footer className="bg-secondary pt-16 pb-8">
@@ -14,7 +18,7 @@ const Footer = () => {
           <div className="space-y-4">
             <Link to="/" className="inline-block">
               <h2 className="text-xl font-display font-bold tracking-tight">
-                <img src="./../../public/logo.png" alt="" /><span className="text-primary"></span>
+                <img src="/logo.png" alt="Reserved Digital Branding" className="h-10" />
               </h2>
             </Link>
             <p className="text-muted-foreground max-w-xs">
@@ -52,15 +56,22 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className="font-medium text-lg mb-4">Quick Links</h3>
+            <h3 className="font-medium text-lg mb-4">{t.nav.home}</h3>
             <ul className="space-y-3">
-              {["Home", "About", "Services", "Portfolio", "Contact"].map((item) => (
-                <li key={item}>
+              {[
+                { name: t.nav.home, path: "/" },
+                { name: t.nav.about, path: "/about" },
+                { name: t.nav.services, path: "/services" },
+                { name: t.nav.portfolio, path: "/portfolio" },
+                { name: t.nav.shop, path: "/shop" },
+                { name: t.nav.contact, path: "/contact" }
+              ].map((item) => (
+                <li key={item.name}>
                   <Link 
-                    to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
+                    to={item.path}
                     className="text-muted-foreground hover:text-foreground transition-colors"
                   >
-                    {item}
+                    {item.name}
                   </Link>
                 </li>
               ))}
@@ -68,7 +79,7 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className="font-medium text-lg mb-4">Services</h3>
+            <h3 className="font-medium text-lg mb-4">{t.nav.services}</h3>
             <ul className="space-y-3">
               {[
                 "Branding", 
@@ -92,24 +103,24 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className="font-medium text-lg mb-4">Subscribe</h3>
-            <p className="text-muted-foreground mb-4">
-              Stay updated with our latest news and offers.
-            </p>
-            <form className="space-y-3">
-              <div className="flex">
-                <Input 
-                  type="email" 
-                  placeholder="Email address" 
-                  className="rounded-r-none" 
-                  required
-                />
-                <Button type="submit" className="rounded-l-none">
-                  Subscribe
-                </Button>
-              </div>
-            </form>
-            <div className="mt-6 space-y-3">
+            <h3 className="font-medium text-lg mb-4">{t.shop.downloadable.title}</h3>
+            <ul className="space-y-3">
+              {t.shop.downloadable.resources.map((resource, index) => (
+                <li key={index}>
+                  <a
+                    href={resource.link}
+                    download
+                    className="text-muted-foreground hover:text-foreground transition-colors flex items-center"
+                  >
+                    <Download size={16} className="mr-2 text-primary" />
+                    {resource.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+            
+            <h3 className="font-medium text-lg mt-8 mb-4">{t.common.contactUs}</h3>
+            <div className="space-y-3">
               <div className="flex items-start space-x-3">
                 <Phone size={18} className="text-primary mt-1 flex-shrink-0" />
                 <span className="text-muted-foreground">+263 775 353 142</span>
@@ -128,6 +139,11 @@ const Footer = () => {
 
         <div className="border-t border-border/50 mt-12 pt-8 text-center text-muted-foreground text-sm">
           <p>© {currentYear} Reserved Digital Branding. All Rights Reserved.</p>
+          <p className="mt-1">
+            <a href="/sitemap.xml" className="hover:text-primary">Sitemap</a> | 
+            <a href="/privacy-policy" className="ml-2 hover:text-primary">Privacy Policy</a> | 
+            <a href="/terms-of-service" className="ml-2 hover:text-primary">Terms of Service</a>
+          </p>
         </div>
       </div>
     </footer>
