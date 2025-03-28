@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -17,15 +16,19 @@ import ShopPage from "./pages/ShopPage";
 import NotFound from "./pages/NotFound";
 import { CartProvider } from "./context/CartContext";
 import { LanguageProvider } from "./context/LanguageContext";
-import LoadingScreen from "./components/LoadingScreen";
+import { LoadingScreen } from "./components/LoadingScreen";
+import { NetworkStatus } from "@/components/NetworkStatus";
 import LiveChat from "./components/LiveChat";
 import { preloadAssets, isCacheValid, warmupRoutes } from "./services/cacheService";
 
 const queryClient = new QueryClient();
 
+const MIN_LOADING_TIME = 5000; // 5 seconds in milliseconds
+
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [loadingProgress, setLoadingProgress] = useState(0);
+  const [startTime] = useState(Date.now());
   
   useEffect(() => {
     const initializeApp = async () => {
@@ -35,19 +38,26 @@ const App = () => {
         await preloadAssets(setLoadingProgress);
         await warmupRoutes();
       } else {
-        // If we have a valid cache, simulate quick loading
-        for (let i = 0; i <= 100; i += 10) {
+        // If we have a valid cache, simulate loading
+        for (let i = 0; i <= 90; i += 5) {
           setLoadingProgress(i);
-          await new Promise(r => setTimeout(r, 50));
+          await new Promise(r => setTimeout(r, 100));
         }
       }
       
-      // Hide loading screen
+      // Ensure minimum loading time
+      const elapsedTime = Date.now() - startTime;
+      if (elapsedTime < MIN_LOADING_TIME) {
+        await new Promise(r => setTimeout(r, MIN_LOADING_TIME - elapsedTime));
+      }
+      
+      // Set progress to 100% and complete loading
+      setLoadingProgress(100);
       setIsLoading(false);
     };
     
     initializeApp();
-  }, []);
+  }, [startTime]);
 
   const handleLoadComplete = () => {
     // Additional initialization after loading (if needed)
@@ -78,6 +88,7 @@ const App = () => {
                   </Route>
                 </Routes>
                 <LiveChat />
+                <NetworkStatus />
               </TooltipProvider>
             </CartProvider>
           </LanguageProvider>
@@ -88,3 +99,4 @@ const App = () => {
 };
 
 export default App;
+
