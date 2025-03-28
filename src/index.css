@@ -104,6 +104,7 @@
 
   body {
     @apply bg-background text-foreground font-sans;
+    overflow-x: hidden;
   }
 }
 
@@ -116,7 +117,6 @@
   filter: blur(0);
 }
 
-/* Custom animations */
 .hover-scale {
   transition: transform 0.3s ease;
 }
@@ -148,7 +148,6 @@
   transform-origin: bottom left;
 }
 
-/* Glass morphism */
 .glass {
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(10px);
@@ -182,7 +181,6 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-/* Service card styles */
 .service-card {
   transition: all 0.5s ease;
   background: #ffffff;
@@ -205,7 +203,6 @@
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
-/* Page transition animations */
 .page-enter {
   opacity: 0;
   transform: translateY(20px);
@@ -226,7 +223,6 @@
   transition: opacity 400ms;
 }
 
-/* 3D Elements */
 .perspective-container {
   perspective: 1000px;
   transform-style: preserve-3d;
@@ -241,7 +237,6 @@
   transform: translateZ(20px) rotateX(5deg) rotateY(5deg);
 }
 
-/* Neon effects for dark mode */
 .dark .neon-text-blue {
   color: hsl(var(--neon-blue));
   text-shadow: 0 0 5px rgba(0, 100, 255, 0.5), 0 0 10px rgba(0, 100, 255, 0.3);
@@ -262,7 +257,6 @@
   animation: glow 2s ease-in-out infinite;
 }
 
-/* Apple-inspired styles */
 .apple-card {
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(20px);
@@ -282,22 +276,14 @@
   border-radius: 8px;
 }
 
-/* Floating element */
 .floating {
   animation: float 6s ease-in-out infinite;
-}
-
-/* Loading fade-in effect for page content */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
 }
 
 .page-content {
   animation: fadeIn 0.5s ease-in-out;
 }
 
-/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -315,7 +301,6 @@
   background: rgba(0, 0, 0, 0.3);
 }
 
-/* Prevent content flash during page load */
 body {
   opacity: 1;
   transition: opacity 0.3s ease;
@@ -323,4 +308,64 @@ body {
 
 body.loading {
   opacity: 0;
+}
+
+.parallax-wrapper {
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  perspective: 10px;
+}
+
+.parallax-content {
+  position: relative;
+  z-index: 10;
+  transform-style: preserve-3d;
+}
+
+.parallax-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 120%;
+  transform-style: preserve-3d;
+  transform: translateZ(-10px) scale(2);
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+}
+
+.parallax-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 70%, rgba(0,0,0,0.8) 100%);
+  pointer-events: none;
+  z-index: 5;
+}
+
+.content-section {
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  border-radius: 12px;
+  margin: 2rem 0;
+  padding: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.dark .content-section {
+  background-color: rgba(20, 20, 20, 0.7);
+  backdrop-filter: blur(8px);
+}
+
+html {
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
+body {
+  overflow-x: hidden;
+  min-height: 100vh;
 }

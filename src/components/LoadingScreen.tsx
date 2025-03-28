@@ -1,73 +1,67 @@
 
 import { useEffect, useState } from "react";
 import { Progress } from "@/components/ui/progress";
-import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
 
-const LoadingScreen = ({ onLoadComplete }: { onLoadComplete: () => void }) => {
-  const [progress, setProgress] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
+interface LoadingScreenProps {
+  progress?: number;
+  onLoadComplete: () => void;
+}
+
+const LoadingScreen = ({ progress = 0, onLoadComplete }: LoadingScreenProps) => {
+  const [displayProgress, setDisplayProgress] = useState(0);
   
   useEffect(() => {
-    const totalSteps = 100;
-    let currentStep = 0;
+    // Smoothly animate the progress
+    const timer = setTimeout(() => {
+      setDisplayProgress(progress);
+    }, 100);
     
-    // Simulate loading with a slightly random progression
-    const interval = setInterval(() => {
-      if (currentStep < totalSteps) {
-        // Randomize progress a bit for natural feel
-        const increment = Math.random() * 3 + 1;
-        currentStep = Math.min(currentStep + increment, totalSteps);
-        setProgress(currentStep);
-        
-        // When we reach 100%, finish loading
-        if (currentStep >= totalSteps) {
-          clearInterval(interval);
-          // Give a small delay before hiding
-          setTimeout(() => {
-            setIsLoading(false);
-            // Notify parent component that loading is complete
-            setTimeout(() => onLoadComplete(), 500);
-          }, 300);
-        }
-      }
-    }, 60);
-    
-    return () => clearInterval(interval);
-  }, [onLoadComplete]);
-
+    return () => clearTimeout(timer);
+  }, [progress]);
+  
+  useEffect(() => {
+    // When progress is at 100%, trigger the complete function
+    if (displayProgress >= 100) {
+      const timer = setTimeout(() => {
+        onLoadComplete();
+      }, 500);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [displayProgress, onLoadComplete]);
+  
   return (
-    <div 
-      className={cn(
-        "fixed inset-0 z-50 flex flex-col items-center justify-center bg-background transition-opacity duration-500",
-        isLoading ? "opacity-100" : "opacity-0 pointer-events-none"
-      )}
+    <motion.div
+      className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-background dark:bg-card"
+      initial={{ opacity: 1 }}
+      animate={{ opacity: displayProgress >= 100 ? 0 : 1 }}
+      transition={{ duration: 0.5 }}
     >
-      <div className="w-full max-w-md px-4 space-y-8">
-        <div className="flex justify-center">
-          <img 
-            src="/logo.png" 
-            alt="RSRVD" 
-            className="h-16 w-auto animate-pulse" 
+      <div className="container px-6 max-w-md">
+        <div className="mb-8 text-center">
+          <img
+            src="/logo.png"
+            alt="Reserved Digital Branding"
+            className="mx-auto w-48 mb-6"
           />
+          <h1 className="text-3xl font-display font-bold mb-2 dark:neon-text-red">
+            Reserved Digital Branding
+          </h1>
+          <p className="text-muted-foreground">
+            Elevating your brand through digital excellence
+          </p>
         </div>
         
         <div className="space-y-2">
-          <Progress value={progress} className="h-2 w-full bg-gray-200 dark:bg-gray-700" />
-          <p className="text-center text-sm text-muted-foreground">
-            Loading... {Math.round(progress)}%
-          </p>
-        </div>
-        
-        <div className="text-center">
-          <h2 className="text-2xl font-bold text-primary">
-            Reserved Digital Branding
-          </h2>
-          <p className="mt-2 text-muted-foreground">
-            Preparing your experience...
-          </p>
+          <Progress value={displayProgress} className="h-2" />
+          <div className="flex justify-between text-sm text-muted-foreground">
+            <span>Loading assets...</span>
+            <span>{Math.round(displayProgress)}%</span>
+          </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
