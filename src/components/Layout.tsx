@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "./Navbar";
@@ -8,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import Meta from "./SEO/Meta";
 import CallToAction from "./CallToAction";
 import ParallaxBackground from "./ParallaxBackground";
-import VideoBackground from "./VideoBackground";
 
 // Define default meta information for SEO
 const defaultMeta = {
@@ -100,24 +98,6 @@ const Layout = () => {
   // Determine whether to show CTA (not on contact or cart pages)
   const showCTA = !['/contact', '/cart'].includes(location.pathname);
 
-  // Choose a background image based on the route
-  const getBackgroundImageForRoute = () => {
-    switch (location.pathname) {
-      case '/about':
-        return "/about_thumb_1.jpg";
-      case '/services':
-        return "/graphic_design.jpg";
-      case '/portfolio':
-        return "/FORESTRY EXBIHITIOM 10.jpg";
-      case '/contact':
-        return "/We Meat Logo 3.jpg";
-      case '/shop':
-        return "/hoodie.jpg";
-      default:
-        return "/branding.jpg";
-    }
-  };
-
   return (
     <>
       <Meta 
@@ -126,19 +106,9 @@ const Layout = () => {
         ogUrl={`https://reserveddigitalbranding.com${location.pathname}`}
       />
       
-      {/* Page Header Video Background */}
-      <div className="fixed inset-0 z-0 h-[50vh]">
-        <VideoBackground 
-          videoSrc="/video.mp4" 
-          overlayOpacity={0.7}
-          overlayColor={isDarkMode ? "#000000" : "#111827"}
-          posterImage={getBackgroundImageForRoute()}
-        />
-      </div>
-      
       <div className="flex flex-col min-h-screen relative">
         <Navbar />
-        <main className={`flex-grow transition-opacity duration-500 ${isPageLoaded ? 'opacity-100' : 'opacity-0'} relative z-10 pt-[35vh]`}>
+        <main className={`flex-grow transition-opacity duration-500 ${isPageLoaded ? 'opacity-100' : 'opacity-0'} relative z-10`}>
           <Outlet />
           
           {showCTA && <CallToAction className="mt-16 md:mt-24" />}

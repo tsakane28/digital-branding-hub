@@ -5,6 +5,7 @@ import { ArrowRight, Plus, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { useCart, Service } from "@/context/CartContext";
+import VideoBackground from "@/components/VideoBackground";
 
 const services: Service[] = [
   {
@@ -154,22 +155,24 @@ const ServicesPage = () => {
 
   return (
     <div className="flex flex-col w-full">
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-secondary">
-        <div className="absolute inset-0 -z-10 overflow-hidden">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/5 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 -left-40 w-80 h-80 bg-primary/5 rounded-full blur-3xl"></div>
-        </div>
-
-        <div className="container px-6 mx-auto">
-          <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-primary/10 text-primary mb-6">
+      {/* Hero Section with Video Background */}
+      <section className="relative min-h-[90vh] flex items-center">
+        <VideoBackground 
+          videoSrc="/video.mp4" 
+          overlayOpacity={0.7}
+          overlayColor="#000000"
+          posterImage="/graphic_design.jpg"
+        />
+        
+        <div className="container px-6 mx-auto relative z-10 py-32">
+          <div className="max-w-3xl mx-auto text-center text-white">
+            <div className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-primary/30 text-white mb-6">
               <span>Our Services</span>
             </div>
-            <h1 className="text-4xl sm:text-5xl font-display font-bold tracking-tight mb-6 animate-fade-up">
+            <h1 className="text-4xl sm:text-5xl font-display font-bold tracking-tight mb-6 animate-fade-up text-white">
               Comprehensive Digital Branding Solutions
             </h1>
-            <p className="text-lg text-muted-foreground animate-fade-up" style={{ animationDelay: "100ms" }}>
+            <p className="text-lg text-white/80 animate-fade-up" style={{ animationDelay: "100ms" }}>
               Explore our range of services designed to elevate your brand presence and drive business growth.
             </p>
           </div>
@@ -202,7 +205,7 @@ const ServicesPage = () => {
         </div>
       </section>
 
-      {/* Individual Services */}
+      {/* Individual Services with Image Backgrounds */}
       <section className="py-20 bg-secondry">
         <div className="container px-6 mx-auto">
           <div className="max-w-3xl mx-auto text-center mb-16">
@@ -214,50 +217,50 @@ const ServicesPage = () => {
             </p>
           </div>
 
-          <div className="space-y-20">
+          <div className="space-y-0">
             {services.map((service, index) => (
               <div 
                 key={service.id}
                 id={service.id}
                 ref={(el) => (serviceRefs.current[service.id] = el)}
-                className={`grid md:grid-cols-2 gap-12 items-center ${
-                  index % 2 === 0 ? "" : "md:flex-row-reverse"
-                }`}
+                className="relative min-h-[80vh] flex items-center"
               >
-                <div className={`order-1 ${index % 2 === 1 ? "md:order-2" : "md:order-1"}`}>
-                  <div className={`relative aspect-[4/3] rounded-2xl overflow-hidden shadow-xl animate-fade-right transition-opacity duration-1000 ${isImagesLoaded ? 'opacity-100' : 'opacity-0'}`}>
-                    <img 
-                      src={service.image} 
-                      alt={service.name} 
-                      className={`object-cover w-full h-full pixelated-load ${isImagesLoaded ? 'loaded' : ''}`}
-                    />
-                  </div>
+                {/* Background Image with Overlay */}
+                <div className="absolute inset-0 w-full h-full z-0">
+                  <img 
+                    src={service.image} 
+                    alt={service.name} 
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-black/60"></div>
                 </div>
-
-                <div className={`space-y-6 animate-fade-left order-2 ${index % 2 === 1 ? "md:order-1" : "md:order-2"}`}>
-                  <div className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-primary/10 text-primary">
-                    <span>Service</span>
-                  </div>
-                  <h2 className="text-3xl font-display font-bold">
-                    {service.name}
-                  </h2>
-                  <p className="text-muted-foreground">
-                    {service.description}
-                  </p>
-                  <p className="text-2xl font-display font-bold">
-                    {formatPrice(service.price)}
-                  </p>
-                  <div className="flex flex-col sm:flex-row gap-4">
-                    <Button onClick={() => handleAddToCart(service)}>
-                      <Plus size={16} className="mr-2" />
-                      Add to Cart
-                    </Button>
-                    <Button variant="outline" asChild>
-                      <Link to="/contact">
-                        Request Info
-                        <ArrowRight size={16} className="ml-2" />
-                      </Link>
-                    </Button>
+                
+                <div className="container relative z-10 px-6 py-20">
+                  <div className="max-w-xl mx-auto text-white">
+                    <div className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-primary/30 text-white mb-4">
+                      <span>Service</span>
+                    </div>
+                    <h2 className="text-3xl font-display font-bold mb-4 text-white">
+                      {service.name}
+                    </h2>
+                    <p className="text-white/90 mb-6">
+                      {service.description}
+                    </p>
+                    <p className="text-2xl font-display font-bold text-white mb-6">
+                      {formatPrice(service.price)}
+                    </p>
+                    <div className="flex flex-col sm:flex-row gap-4">
+                      <Button onClick={() => handleAddToCart(service)}>
+                        <Plus size={16} className="mr-2" />
+                        Add to Cart
+                      </Button>
+                      <Button variant="outline" className="bg-transparent text-white border-white hover:bg-white/10" asChild>
+                        <Link to="/contact">
+                          Request Info
+                          <ArrowRight size={16} className="ml-2" />
+                        </Link>
+                      </Button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -266,22 +269,26 @@ const ServicesPage = () => {
         </div>
       </section>
 
-      {/* Packages Section */}
-      <section className="py-20 bg-secondary relative overflow-hidden">
-        <div className="absolute inset-0 -z-10 overflow-hidden">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/5 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 -left-40 w-80 h-80 bg-primary/5 rounded-full blur-3xl"></div>
+      {/* Packages Section with Background */}
+      <section className="py-20 relative overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="/branding.jpg" 
+            alt="Branding Packages" 
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/70"></div>
         </div>
 
-        <div className="container px-6 mx-auto">
+        <div className="container px-6 mx-auto relative z-10">
           <div className="max-w-3xl mx-auto text-center mb-16">
-            <div className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-primary/10 text-primary mb-4">
+            <div className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-primary/30 text-white mb-4">
               <span>Value Packages</span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 text-white">
               Branding Packages
             </h2>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-lg text-white/80">
               Choose from our carefully curated packages for comprehensive branding solutions.
             </p>
           </div>
@@ -300,9 +307,9 @@ const ServicesPage = () => {
                 <div 
                   key={pkg.id} 
                   className={`
-                    relative rounded-xl border bg-secondry shadow-sm transition-all duration-300 
+                    relative rounded-xl border bg-white/10 backdrop-blur-md shadow-sm transition-all duration-300 
                     hover:shadow-md animate-fade-up
-                    ${pkg.recommended ? 'border-primary ring-1 ring-primary' : 'border-border'}
+                    ${pkg.recommended ? 'border-primary ring-1 ring-primary' : 'border-white/20'}
                   `}
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
@@ -315,17 +322,17 @@ const ServicesPage = () => {
                   )}
 
                   <div className="p-6">
-                    <h3 className="text-2xl font-display font-bold mb-2">{pkg.name}</h3>
-                    <p className="text-muted-foreground mb-4">{pkg.description}</p>
+                    <h3 className="text-2xl font-display font-bold mb-2 text-white">{pkg.name}</h3>
+                    <p className="text-white/80 mb-4">{pkg.description}</p>
                     <div className="mb-6">
-                      <span className="text-3xl font-display font-bold">{formatPrice(pkg.price)}</span>
+                      <span className="text-3xl font-display font-bold text-white">{formatPrice(pkg.price)}</span>
                     </div>
                     
                     <ul className="space-y-3 mb-8">
                       {pkg.features.map((feature, i) => (
                         <li key={i} className="flex items-start">
                           <Check className="h-5 w-5 text-primary flex-shrink-0 mr-3 mt-0.5" />
-                          <span>{feature}</span>
+                          <span className="text-white/90">{feature}</span>
                         </li>
                       ))}
                     </ul>
@@ -340,7 +347,7 @@ const ServicesPage = () => {
                         <Plus size={16} className="mr-2" />
                         Add to Cart
                       </Button>
-                      <Button variant="outline" asChild>
+                      <Button variant="outline" className="bg-transparent text-white border-white hover:bg-white/10" asChild>
                         <Link to="/contact">
                           Contact Us
                         </Link>
@@ -355,22 +362,31 @@ const ServicesPage = () => {
       </section>
 
       {/* Process Section */}
-      <section className="py-20 bg-secondry">
-        <div className="container px-6 mx-auto">
+      <section className="py-20 relative">
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="/about_thumb_1.jpg" 
+            alt="Our Process" 
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/60"></div>
+        </div>
+        
+        <div className="container px-6 mx-auto relative z-10">
           <div className="max-w-3xl mx-auto text-center mb-16">
-            <div className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-primary/10 text-primary mb-4">
+            <div className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-primary/30 text-white mb-4">
               <span>Our Process</span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 text-white">
               How We Work
             </h2>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-lg text-white/80">
               Our structured approach ensures quality results and a smooth experience.
             </p>
           </div>
 
           <div className="relative max-w-4xl mx-auto">
-            <div className="absolute left-12 top-0 bottom-0 w-0.5 bg-border md:left-1/2 md:-ml-0.5"></div>
+            <div className="absolute left-12 top-0 bottom-0 w-0.5 bg-white/30 md:left-1/2 md:-ml-0.5"></div>
             
             <div className="space-y-12">
               {[
@@ -402,8 +418,8 @@ const ServicesPage = () => {
                     </div>
                   </div>
                   <div className={`ml-20 md:w-1/2 ${index % 2 === 0 ? 'md:ml-0 md:mr-auto md:pr-16 md:text-right' : 'md:ml-auto md:pl-16'}`}>
-                    <h3 className="text-xl font-medium mb-2">{step.title}</h3>
-                    <p className="text-muted-foreground">{step.description}</p>
+                    <h3 className="text-xl font-medium mb-2 text-white">{step.title}</h3>
+                    <p className="text-white/80">{step.description}</p>
                   </div>
                 </div>
               ))}
