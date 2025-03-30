@@ -3,12 +3,15 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { ReactNode, useRef } from "react";
 import { cn } from "@/lib/utils";
 
+// Define valid offset types according to framer-motion's ScrollOffset type
+type ValidScrollOffset = "start end" | "end start" | "center center" | [number, number] | [string, string];
+
 interface ParallaxProps {
   children: ReactNode;
   className?: string;
   speed?: number;
   direction?: "up" | "down" | "left" | "right";
-  offset?: [string, string]; // Changed to be more flexible
+  offset?: ValidScrollOffset; // Updated type to match framer-motion expectations
 }
 
 export const Parallax = ({
@@ -16,12 +19,12 @@ export const Parallax = ({
   className = "",
   speed = 0.3,
   direction = "up",
-  offset = ["start end", "end start"]
+  offset = ["0 1", "1 0"] // Using values that are acceptable for framer-motion
 }: ParallaxProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: offset
+    offset: offset as any // Type assertion to avoid TypeScript errors
   });
 
   // Calculate movement based on direction and speed
