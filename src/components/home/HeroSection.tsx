@@ -3,7 +3,8 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import Scene3D from "@/components/Scene3D";
+import VideoBackground from "@/components/VideoBackground";
+import { Animations } from "@/components/animations";
 
 const HeroSection = () => {
   const [isImagesLoaded, setIsImagesLoaded] = useState(false);
@@ -19,17 +20,22 @@ const HeroSection = () => {
 
   return (
     <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
-      <div className="absolute inset-0 bg-secondary -z-10 overflow-hidden">
-        <div className="absolute w-full h-full bg-gradient-to-br from-primary/5 to-secondary/50 dark:from-primary/10 dark:to-background/80"></div>
-        <div className={`absolute inset-0 transition-opacity duration-1000 ${isImagesLoaded ? 'opacity-100' : 'opacity-0'}`}>
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-neon-blue/10 dark:bg-neon-blue/20 rounded-full blur-3xl"></div>
-          <div className="absolute top-1/4 -left-40 w-80 h-80 bg-neon-red/10 dark:bg-neon-red/20 rounded-full blur-3xl"></div>
-        </div>
+      <div className="absolute inset-0 -z-10 overflow-hidden">
+        <VideoBackground 
+          videoSrc="/video.mp4" 
+          overlayOpacity={0.7}
+          className="w-full h-full"
+        >
+          <div className={`absolute inset-0 transition-opacity duration-1000 ${isImagesLoaded ? 'opacity-100' : 'opacity-0'}`}>
+            <div className="absolute -top-40 -right-40 w-80 h-80 bg-neon-blue/10 dark:bg-neon-blue/20 rounded-full blur-3xl"></div>
+            <div className="absolute top-1/4 -left-40 w-80 h-80 bg-neon-red/10 dark:bg-neon-red/20 rounded-full blur-3xl"></div>
+          </div>
+        </VideoBackground>
       </div>
 
       <div className="container px-6 mx-auto">
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="max-w-xl space-y-8 animate-fade-right">
+          <Animations.FadeIn className="max-w-xl space-y-8">
             <div>
               <div className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-primary/10 text-primary mb-6 dark:bg-primary/20 dark:neon-text-red">
                 <span>Your Digital Branding Agency</span>
@@ -68,11 +74,18 @@ const HeroSection = () => {
                 </span>
               </div>
             </div>
-          </div>
+          </Animations.FadeIn>
 
-          <div className="perspective-container h-[400px] animate-fade-left">
-            <Scene3D className="w-full h-full transform-3d" />
-          </div>
+          <Animations.FadeIn className="perspective-container h-[400px]">
+            <div className="relative w-full h-full overflow-hidden rounded-2xl shadow-xl">
+              <img 
+                src="/branding.jpg" 
+                alt="Digital Branding" 
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-tr from-primary/30 to-transparent"></div>
+            </div>
+          </Animations.FadeIn>
         </div>
       </div>
     </section>

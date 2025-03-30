@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import Meta from "./SEO/Meta";
 import CallToAction from "./CallToAction";
 import ParallaxBackground from "./ParallaxBackground";
+import VideoBackground from "./VideoBackground";
 
 // Define default meta information for SEO
 const defaultMeta = {
@@ -125,12 +126,19 @@ const Layout = () => {
         ogUrl={`https://reserveddigitalbranding.com${location.pathname}`}
       />
       
-      {/* Parallax Background */}
-      <ParallaxBackground imageUrl={getBackgroundImageForRoute()} />
+      {/* Page Header Video Background */}
+      <div className="fixed inset-0 z-0 h-[50vh]">
+        <VideoBackground 
+          videoSrc="/video.mp4" 
+          overlayOpacity={0.7}
+          overlayColor={isDarkMode ? "#000000" : "#111827"}
+          posterImage={getBackgroundImageForRoute()}
+        />
+      </div>
       
       <div className="flex flex-col min-h-screen relative">
         <Navbar />
-        <main className={`flex-grow transition-opacity duration-500 ${isPageLoaded ? 'opacity-100' : 'opacity-0'} relative z-10`}>
+        <main className={`flex-grow transition-opacity duration-500 ${isPageLoaded ? 'opacity-100' : 'opacity-0'} relative z-10 pt-[35vh]`}>
           <Outlet />
           
           {showCTA && <CallToAction className="mt-16 md:mt-24" />}

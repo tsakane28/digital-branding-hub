@@ -8,7 +8,7 @@ interface ParallaxProps {
   className?: string;
   speed?: number;
   direction?: "up" | "down" | "left" | "right";
-  offset?: ["start end", "end start"];
+  offset?: [string, string]; // Changed to be more flexible
 }
 
 export const Parallax = ({
@@ -53,3 +53,5 @@ export const Parallax = ({
     </div>
   );
 };
+
+export default Parallax;
