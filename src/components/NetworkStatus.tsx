@@ -1,54 +1,60 @@
-import { useEffect, useState } from "react";
-import { AlertCircle, Wifi, WifiOff } from "lucide-react";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { checkNetworkStatus, isSlowConnection } from "@/utils/imageLoader";
+
+import { useState, useEffect } from "react";
+import { Wifi, WifiOff } from "lucide-react";
+import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
+import { Slide, Fade } from "@/components/ui/transitions";
 
 export const NetworkStatus = () => {
-  const [status, setStatus] = useState(checkNetworkStatus());
+  const [isOnline, setIsOnline] = useState(navigator.onLine);
+  const [showOfflineAlert, setShowOfflineAlert] = useState(false);
+  const [showOnlineAlert, setShowOnlineAlert] = useState(false);
 
   useEffect(() => {
-    const handleOnline = () => setStatus(checkNetworkStatus());
-    const handleOffline = () => setStatus(checkNetworkStatus());
-    const handleConnectionChange = () => setStatus(checkNetworkStatus());
+    const handleOnline = () => {
+      setIsOnline(true);
+      setShowOnlineAlert(true);
+      setTimeout(() => setShowOnlineAlert(false), 3000);
+    };
 
-    window.addEventListener('online', handleOnline);
-    window.addEventListener('offline', handleOffline);
-    if ((navigator as any).connection) {
-      (navigator as any).connection.addEventListener('change', handleConnectionChange);
-    }
+    const handleOffline = () => {
+      setIsOnline(false);
+      setShowOfflineAlert(true);
+    };
+
+    window.addEventListener("online", handleOnline);
+    window.addEventListener("offline", handleOffline);
 
     return () => {
-      window.removeEventListener('online', handleOnline);
-      window.removeEventListener('offline', handleOffline);
-      if ((navigator as any).connection) {
-        (navigator as any).connection.removeEventListener('change', handleConnectionChange);
-      }
+      window.removeEventListener("online", handleOnline);
+      window.removeEventListener("offline", handleOffline);
     };
   }, []);
 
-  if (!status.isOnline) {
-    return (
-      <Alert variant="destructive" className="fixed bottom-4 right-4 z-50 max-w-sm">
-        <WifiOff className="h-4 w-4" />
-        <AlertTitle>Offline</AlertTitle>
-        <AlertDescription>
-          You are currently offline. Some features may be limited.
-        </AlertDescription>
-      </Alert>
-    );
-  }
+  return (
+    <>
+      {showOfflineAlert && !isOnline && (
+        <Slide direction="up" className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-md">
+          <Alert variant="default">
+            <WifiOff className="h-4 w-4" />
+            <AlertTitle>You are offline</AlertTitle>
+            <AlertDescription>
+              Check your internet connection to continue using all features.
+            </AlertDescription>
+          </Alert>
+        </Slide>
+      )}
 
-  if (isSlowConnection(status.speed)) {
-    return (
-      <Alert variant="warning" className="fixed bottom-4 right-4 z-50 max-w-sm">
-        <AlertCircle className="h-4 w-4" />
-        <AlertTitle>Slow Connection</AlertTitle>
-        <AlertDescription>
-          Your connection is slow. Images may take longer to load.
-        </AlertDescription>
-      </Alert>
-    );
-  }
-
-  return null;
-}; 
+      {showOnlineAlert && isOnline && (
+        <Fade className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-md">
+          <Alert variant="default">
+            <Wifi className="h-4 w-4" />
+            <AlertTitle>You are back online</AlertTitle>
+            <AlertDescription>
+              Your internet connection has been restored.
+            </AlertDescription>
+          </Alert>
+        </Fade>
+      )}
+    </>
+  );
+};

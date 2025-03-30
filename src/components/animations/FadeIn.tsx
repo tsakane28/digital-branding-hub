@@ -12,6 +12,9 @@ interface FadeInProps {
   distance?: number;
   once?: boolean;
   threshold?: number;
+  staggerChildren?: number;
+  staggerDirection?: "forward" | "reverse";
+  viewport?: boolean;
 }
 
 export const FadeIn = ({ 
@@ -22,7 +25,10 @@ export const FadeIn = ({
   direction = "up",
   distance = 20,
   once = true,
-  threshold = 0.1
+  threshold = 0.1,
+  staggerChildren = 0,
+  staggerDirection = "forward",
+  viewport = true
 }: FadeInProps) => {
   // Determine the initial animation properties based on the direction
   const getInitialPosition = () => {
@@ -42,16 +48,29 @@ export const FadeIn = ({
     }
   };
 
-  return (
-    <motion.div
-      initial={getInitialPosition()}
-      whileInView={{ opacity: 1, x: 0, y: 0 }}
-      viewport={{ once, margin: `0px 0px -${threshold * 100}% 0px` }}
-      transition={{
+  const variants = {
+    hidden: getInitialPosition(),
+    visible: { 
+      opacity: 1, 
+      x: 0, 
+      y: 0,
+      transition: {
         duration,
         delay,
-        ease: "easeOut"
-      }}
+        ease: "easeOut",
+        staggerChildren: staggerChildren,
+        staggerDirection: staggerDirection === "forward" ? 1 : -1
+      }
+    }
+  };
+
+  return (
+    <motion.div
+      initial="hidden"
+      animate={viewport ? undefined : "visible"}
+      whileInView={viewport ? "visible" : undefined}
+      viewport={viewport ? { once, margin: `0px 0px -${threshold * 100}% 0px` } : undefined}
+      variants={variants}
       className={cn(className)}
     >
       {children}

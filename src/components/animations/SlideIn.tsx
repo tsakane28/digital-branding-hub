@@ -1,5 +1,7 @@
+
 import { motion } from "framer-motion";
 import { ReactNode } from "react";
+import { cn } from "@/lib/utils";
 
 interface SlideInProps {
   children: ReactNode;
@@ -7,6 +9,9 @@ interface SlideInProps {
   delay?: number;
   duration?: number;
   className?: string;
+  distance?: number;
+  once?: boolean;
+  viewport?: boolean;
 }
 
 export const SlideIn = ({ 
@@ -14,20 +19,23 @@ export const SlideIn = ({
   direction = "up",
   delay = 0,
   duration = 0.5,
-  className = ""
+  className = "",
+  distance = 50,
+  once = true,
+  viewport = true
 }: SlideInProps) => {
   const getInitialPosition = () => {
     switch (direction) {
       case "up":
-        return { y: 50, opacity: 0 };
+        return { y: distance, opacity: 1 };
       case "down":
-        return { y: -50, opacity: 0 };
+        return { y: -distance, opacity: 1 };
       case "left":
-        return { x: 50, opacity: 0 };
+        return { x: distance, opacity: 1 };
       case "right":
-        return { x: -50, opacity: 0 };
+        return { x: -distance, opacity: 1 };
       default:
-        return { y: 50, opacity: 0 };
+        return { y: distance, opacity: 1 };
     }
   };
 
@@ -49,13 +57,15 @@ export const SlideIn = ({
   return (
     <motion.div
       initial={getInitialPosition()}
-      animate={getAnimatePosition()}
+      animate={viewport ? undefined : getAnimatePosition()}
+      whileInView={viewport ? getAnimatePosition() : undefined}
+      viewport={viewport ? { once, margin: "0px 0px -10% 0px" } : undefined}
       transition={{
         duration,
         delay,
         ease: "easeOut"
       }}
-      className={className}
+      className={cn(className)}
     >
       {children}
     </motion.div>
