@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, ExternalLink } from "lucide-react";
@@ -8,8 +9,10 @@ import { NetworkStatus } from "@/components/NetworkStatus";
 import { preloadPortfolioImages } from "@/utils/imageLoader";
 import { Progress } from "@/components/ui/progress";
 import { motion, AnimatePresence } from "framer-motion";
+import { PortfolioItem } from "@/types/portfolio";
 
-interface Project {
+// Define Project interface that extends PortfolioItem with optional fields
+interface Project extends Partial<PortfolioItem> {
   id: string;
   title: string;
   client: string;
@@ -17,6 +20,9 @@ interface Project {
   description: string;
   image: string;
   featured?: boolean;
+  // These are required in PortfolioItem but we'll ensure they exist for the API call
+  date: string;
+  technologies: string[];
 }
 
 const categories = [
@@ -36,7 +42,9 @@ const projects: Project[] = [
     category: "Fashion",
     description: "Designed a unique T-shirt collection celebrating Zimbabwean culture, incorporating traditional patterns and modern aesthetics.",
     image: "/public/Zimbabwe_tees.jpg",
-    featured: true
+    featured: true,
+    date: "2023-05-15",
+    technologies: ["Illustrator", "Photoshop"]
   },
   {
     id: "we-meat-logo",
@@ -45,7 +53,9 @@ const projects: Project[] = [
     category: "Branding",
     description: "Developed a bold and memorable brand identity for a premium butchery, including a logo and packaging designs.",
     image: "/public/We Meat Logo 3.jpg",
-    featured: true
+    featured: true,
+    date: "2023-04-22",
+    technologies: ["Illustrator", "InDesign"]
   },
   {
     id: "social-media-management",
@@ -54,7 +64,9 @@ const projects: Project[] = [
     category: "Social Media",
     description: "Implemented an effective social media strategy to enhance engagement and brand awareness for a fast-growing digital agency.",
     image: "/public/socialm.png",
-    featured: true
+    featured: true,
+    date: "2023-03-10",
+    technologies: ["Canva", "Hootsuite", "Buffer"]
   },
   {
     id: "victoria-foods-logo",
@@ -63,7 +75,9 @@ const projects: Project[] = [
     category: "Branding",
     description: "Revamped the brand identity of Victoria Foods with a fresh, modern logo reflecting quality and tradition in food production.",
     image: "/public/Victoria Foods 2.jpg",
-    featured: true
+    featured: true,
+    date: "2023-02-05",
+    technologies: ["Illustrator", "Photoshop"]
   },
   {
     id: "wednesday-tshirts",
@@ -71,7 +85,9 @@ const projects: Project[] = [
     client: "Casual Wear Co.",
     category: "Fashion",
     description: "Created a stylish and minimalistic T-shirt design series, focusing on everyday fashion with a modern touch.",
-    image: "/public/Wednesday Steps.jpg"
+    image: "/public/Wednesday Steps.jpg",
+    date: "2023-01-20",
+    technologies: ["Illustrator", "Photoshop"]
   },
   {
     id: "baby-photography",
@@ -79,7 +95,9 @@ const projects: Project[] = [
     client: "Olivia Images",
     category: "Photography",
     description: "Captured heartwarming baby portraits with soft lighting and creative setups, delivering timeless family memories.",
-    image: "/public/baby.png"
+    image: "/public/baby.png",
+    date: "2022-12-15",
+    technologies: ["Lightroom", "Photoshop"]
   },
   {
     id: "event-videography",
@@ -87,7 +105,9 @@ const projects: Project[] = [
     client: "Elite Visuals",
     category: "Videography",
     description: "Produced high-quality event video coverage, capturing the most memorable moments with cinematic storytelling.",
-    image: "/public/video_production.jpg"
+    image: "/public/video_production.jpg",
+    date: "2022-11-10",
+    technologies: ["Premiere Pro", "After Effects"]
   },
   {
     id: "old-mutual-backpack",
@@ -95,7 +115,9 @@ const projects: Project[] = [
     client: "Old Mutual",
     category: "Merchandise",
     description: "Designed and produced a stylish, durable backpack with the Old Mutual branding for corporate giveaways and promotions.",
-    image: "/public/backpack.png"
+    image: "/public/backpack.png",
+    date: "2022-10-05",
+    technologies: ["Illustrator", "Photoshop"]
   }
 ];
 

@@ -1,4 +1,13 @@
 
+import { FadeIn } from './FadeIn';
+import { SlideIn } from './SlideIn';
+import { ScaleIn } from './ScaleIn';
+import { Reveal } from './Reveal';
+import { Float } from './Float';
+import { Parallax } from './Parallax';
+import { Typewriter } from './Typewriter';
+import { Stagger } from './Stagger';
+
 export { FadeIn } from './FadeIn';
 export { SlideIn } from './SlideIn';
 export { ScaleIn } from './ScaleIn';

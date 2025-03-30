@@ -1,9 +1,9 @@
 
 import * as React from "react";
-import { motion } from "framer-motion";
+import { motion, HTMLMotionProps } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-interface FadeProps extends React.HTMLAttributes<HTMLDivElement> {
+interface FadeProps {
   children: React.ReactNode;
   duration?: number;
   delay?: number;
@@ -27,14 +27,14 @@ export const Fade = ({
       exit={{ opacity: 0 }}
       transition={{ duration, delay }}
       className={cn(className)}
-      {...props}
+      {...props as HTMLMotionProps<"div">}
     >
       {children}
     </motion.div>
   );
 };
 
-interface SlideProps extends React.HTMLAttributes<HTMLDivElement> {
+interface SlideProps {
   children: React.ReactNode;
   direction?: "up" | "down" | "left" | "right";
   duration?: number;
@@ -77,14 +77,14 @@ export const Slide = ({
       exit={{ opacity: 0 }}
       transition={{ duration, delay }}
       className={cn(className)}
-      {...props}
+      {...props as HTMLMotionProps<"div">}
     >
       {children}
     </motion.div>
   );
 };
 
-interface ScaleProps extends React.HTMLAttributes<HTMLDivElement> {
+interface ScaleProps {
   children: React.ReactNode;
   initialScale?: number;
   duration?: number;
@@ -110,7 +110,7 @@ export const Scale = ({
       exit={{ opacity: 0, scale: initialScale }}
       transition={{ duration, delay }}
       className={cn(className)}
-      {...props}
+      {...props as HTMLMotionProps<"div">}
     >
       {children}
     </motion.div>

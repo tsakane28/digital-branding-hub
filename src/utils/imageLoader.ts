@@ -1,5 +1,6 @@
+
 import { PortfolioItem } from "@/types/portfolio";
-import { ShopItem } from "@/types/shop";
+import { Product } from "@/types/shop";
 
 interface ImageLoadStatus {
   loaded: boolean;
@@ -36,8 +37,9 @@ export const preloadPortfolioImages = async (items: PortfolioItem[]) => {
   return Promise.all(imagePromises);
 };
 
-export const preloadShopImages = async (items: ShopItem[]) => {
-  const imagePromises = items.map(item => preloadImage(item.image));
+export const preloadShopImages = async (items: Product[]) => {
+  // Use the first image from each product's images array
+  const imagePromises = items.map(item => preloadImage(item.images[0]));
   return Promise.all(imagePromises);
 };
 
