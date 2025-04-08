@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "./Navbar";
@@ -106,7 +107,7 @@ const Layout = () => {
         ogUrl={`https://reserveddigitalbranding.com${location.pathname}`}
       />
       
-      <div className="flex flex-col min-h-screen relative">
+      <div className="flex flex-col min-h-screen relative bg-white dark:bg-black">
         <Navbar />
         <main className={`flex-grow transition-opacity duration-500 ${isPageLoaded ? 'opacity-100' : 'opacity-0'} relative z-10`}>
           <Outlet />
@@ -120,10 +121,10 @@ const Layout = () => {
           onClick={toggleTheme}
           variant="outline" 
           size="icon" 
-          className="fixed right-4 bottom-4 z-50 rounded-full w-12 h-12 apple-button shadow-lg"
+          className="fixed right-4 bottom-4 z-50 rounded-full w-12 h-12 text-gray-800 dark:text-gray-200 bg-white/80 dark:bg-black/80 backdrop-blur-lg shadow-md"
         >
           {isDarkMode ? (
-            <Sun className="h-5 w-5 text-yellow-400" />
+            <Sun className="h-5 w-5" />
           ) : (
             <Moon className="h-5 w-5" />
           )}

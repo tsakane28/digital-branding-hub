@@ -1,7 +1,6 @@
 
-import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { CheckCircle2, Star } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const features = [
@@ -16,73 +15,57 @@ const features = [
 ];
 
 const FeaturesSection = () => {
-  const [isImagesLoaded, setIsImagesLoaded] = useState(false);
-
-  useEffect(() => {
-    // Simulate image loading
-    const timer = setTimeout(() => {
-      setIsImagesLoaded(true);
-    }, 300);
-
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
-    <section className="py-20 bg-secondary relative overflow-hidden dark:bg-background">
-      <div className="absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/5 dark:bg-neon-blue/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 -left-40 w-80 h-80 bg-primary/5 dark:bg-neon-red/10 rounded-full blur-3xl"></div>
-      </div>
-
+    <section className="py-24 bg-white dark:bg-black">
       <div className="container px-6 mx-auto">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <div className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-primary/10 text-primary mb-4 dark:bg-primary/20 dark:neon-text-red">
-              <span>Why Choose Us</span>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 dark:neon-text-red">
-              Elevate Your Brand with Our Expertise
-            </h2>
-            <p className="text-lg text-muted-foreground mb-8">
-              We blend creativity with strategic thinking to deliver branding solutions that make a lasting impression.
-            </p>
+        <div className="max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            <div>
+              <h3 className="text-sm font-semibold text-gray-500 dark:text-gray-400 tracking-wide uppercase mb-4">
+                Why Choose Us
+              </h3>
+              <h2 className="text-4xl md:text-5xl font-semibold tracking-tight mb-8">
+                Elevate Your Brand with Our Expertise
+              </h2>
+              <p className="text-xl text-gray-500 dark:text-gray-400 mb-10">
+                We blend creativity with strategic thinking to deliver branding solutions that make a lasting impression.
+              </p>
 
-            <div className="grid sm:grid-cols-2 gap-4">
-              {features.map((feature, i) => (
-                <div 
-                  key={i} 
-                  className="flex items-center space-x-3 animate-fade-right"
-                  style={{ animationDelay: `${i * 100}ms` }}
-                >
-                  <CheckCircle2 className="h-5 w-5 text-primary dark:text-neon-blue flex-shrink-0" />
-                  <span>{feature}</span>
-                </div>
-              ))}
-            </div>
+              <div className="grid sm:grid-cols-2 gap-5 mb-12">
+                {features.map((feature, i) => (
+                  <div key={i} className="flex items-center gap-3">
+                    <CheckCircle2 className="h-5 w-5 text-blue-600 flex-shrink-0" />
+                    <span className="text-gray-700 dark:text-gray-300">{feature}</span>
+                  </div>
+                ))}
+              </div>
 
-            <div className="mt-10">
-              <Button asChild size="lg" className="dark:neon-glow">
+              <Button 
+                size="lg" 
+                className="rounded-full bg-blue-600 hover:bg-blue-700 text-white py-6 px-8"
+                asChild
+              >
                 <Link to="/about">More About Us</Link>
               </Button>
             </div>
-          </div>
 
-          <div className="relative animate-fade-left floating">
-            <div className="relative aspect-square rounded-2xl overflow-hidden shadow-2xl">
+            <div className="relative">
               <img 
                 src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&q=80&w=2670&ixlib=rb-4.0.3" 
                 alt="Creative team working" 
-                className={`object-cover w-full h-full pixelated-load ${isImagesLoaded ? 'loaded' : ''}`}
+                className="rounded-3xl shadow-lg"
               />
-            </div>
-            <div className="absolute -bottom-6 -right-6 glass-card p-4 apple-card dark:neon-border">
-              <div className="flex items-center space-x-2">
-                <div className="flex">
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <Star key={star} className="h-5 w-5 text-yellow-500 fill-yellow-500" />
-                  ))}
+              <div className="absolute -bottom-6 -right-6 bg-white dark:bg-gray-900 p-5 rounded-2xl shadow-lg">
+                <div className="flex items-center gap-2">
+                  <div className="flex">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <svg key={star} className="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 24 24">
+                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                      </svg>
+                    ))}
+                  </div>
+                  <span className="font-medium">5.0 (120+ reviews)</span>
                 </div>
-                <span className="font-medium">5.0 (120+ reviews)</span>
               </div>
             </div>
           </div>
