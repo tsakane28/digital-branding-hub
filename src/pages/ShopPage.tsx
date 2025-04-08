@@ -5,12 +5,14 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
-import { ShoppingCart, Star } from "lucide-react";
+import { ShoppingCart, Star, Package, Palette, Truck, Shield } from "lucide-react";
 import ProductGrid from "@/components/shop/ProductGrid";
 import { Product, getProducts } from "@/services/productService";
 import { Badge } from "@/components/ui/badge";
 import { useLanguage } from "@/context/LanguageContext";
 import { translations } from "@/translations";
+import { Fade, Slide, Scale } from "@/components/ui/transitions";
+import ParallaxBackground from "@/components/ParallaxBackground";
 
 const ShopPage = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -48,21 +50,46 @@ const ShopPage = () => {
     ? products 
     : products.filter(product => product.category === activeCategory);
 
+  const features = [
+    {
+      icon: <Truck className="h-6 w-6" />,
+      title: t.shop.features.shipping.title,
+      description: t.shop.features.shipping.description
+    },
+    {
+      icon: <Palette className="h-6 w-6" />,
+      title: t.shop.features.customization.title,
+      description: t.shop.features.customization.description
+    },
+    {
+      icon: <Shield className="h-6 w-6" />,
+      title: t.shop.features.quality.title,
+      description: t.shop.features.quality.description
+    }
+  ];
+
   return (
     <div className="bg-white dark:bg-black">
-      {/* Hero section with large typography */}
-      <section className="pt-32 pb-16 md:pt-40 md:pb-24">
-        <div className="container px-6 mx-auto max-w-6xl">
+      {/* Hero section with parallax background */}
+      <ParallaxBackground
+        imageUrl="https://images.unsplash.com/photo-1460574283810-2aab119d8511?q=80&w=2000&auto=format&fit=crop"
+        speed={0.15}
+        gradientOpacity={0.7}
+        className="pt-40 pb-24"
+      >
+        <div className="container px-6 mx-auto max-w-6xl relative z-10">
           <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-5xl md:text-7xl font-semibold tracking-tight mb-8">
-              {t.shop.title}
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-500 dark:text-gray-400 leading-relaxed mb-8 max-w-3xl mx-auto">
-              {t.shop.description}
-            </p>
+            <Scale>
+              <h1 className="text-5xl md:text-7xl font-semibold tracking-tight mb-8 text-white">
+                {t.shop.title}
+              </h1>
+              <p className="text-xl md:text-2xl text-gray-200 leading-relaxed mb-8 max-w-3xl mx-auto">
+                {t.shop.description}
+              </p>
+            </Scale>
           </div>
         </div>
-      </section>
+      </ParallaxBackground>
 
       <div className="py-16">
         <div className="container px-6 mx-auto max-w-6xl">
@@ -74,7 +101,7 @@ const ShopPage = () => {
                   <TabsTrigger 
                     key={category.id} 
                     value={category.id} 
-                    className="rounded-full px-6 py-2 data-[state=active]:bg-[#0070c9] data-[state=active]:text-white"
+                    className="rounded-full px-6 py-2 data-[state=active]:bg-black dark:data-[state=active]:bg-white data-[state=active]:text-white dark:data-[state=active]:text-black"
                   >
                     {category.name}
                   </TabsTrigger>
@@ -103,7 +130,7 @@ const ShopPage = () => {
                     addToCart={addToCart} 
                     t={t} 
                     cardClassName="bg-white dark:bg-neutral-900 border-none shadow-sm rounded-3xl overflow-hidden hover:shadow-md transition-all"
-                    buttonClassName="bg-[#0070c9] hover:bg-[#0070c9]/90 text-white rounded-full font-medium"
+                    buttonClassName="bg-black hover:bg-black/90 dark:bg-white dark:hover:bg-white/90 dark:text-black text-white rounded-full font-medium"
                     imageClassName="aspect-square object-cover"
                     contentClassName="p-8"
                   />
@@ -117,56 +144,54 @@ const ShopPage = () => {
           {/* Features section with cards */}
           <section className="mb-24">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <Card className="bg-gray-50 dark:bg-neutral-900 border-none rounded-3xl p-8">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-2xl font-semibold">{t.shop.features.shipping.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600 dark:text-gray-300">{t.shop.features.shipping.description}</p>
-                </CardContent>
-              </Card>
-              <Card className="bg-gray-50 dark:bg-neutral-900 border-none rounded-3xl p-8">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-2xl font-semibold">{t.shop.features.customization.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600 dark:text-gray-300">{t.shop.features.customization.description}</p>
-                </CardContent>
-              </Card>
-              <Card className="bg-gray-50 dark:bg-neutral-900 border-none rounded-3xl p-8">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-2xl font-semibold">{t.shop.features.quality.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600 dark:text-gray-300">{t.shop.features.quality.description}</p>
-                </CardContent>
-              </Card>
+              {features.map((feature, index) => (
+                <Scale key={index} delay={index * 0.1}>
+                  <Card className="bg-gray-50 dark:bg-neutral-900 border-none rounded-3xl p-8 transition-all duration-300 hover:shadow-lg">
+                    <CardHeader className="pb-2">
+                      <div className="mb-4 p-3 bg-black/5 dark:bg-white/5 rounded-full w-12 h-12 flex items-center justify-center">
+                        {feature.icon}
+                      </div>
+                      <CardTitle className="text-2xl font-medium">{feature.title}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-gray-600 dark:text-gray-300">{feature.description}</p>
+                    </CardContent>
+                  </Card>
+                </Scale>
+              ))}
             </div>
           </section>
 
           {/* Downloadable resources section */}
           <section className="bg-gray-50 dark:bg-neutral-900 p-16 rounded-3xl">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-semibold mb-3">{t.shop.downloadable.title}</h2>
-              <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">{t.shop.downloadable.description}</p>
+              <Slide direction="up">
+                <h2 className="text-3xl font-semibold mb-3">{t.shop.downloadable.title}</h2>
+                <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">{t.shop.downloadable.description}</p>
+              </Slide>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {t.shop.downloadable.resources.map((resource, index) => (
-                <Card key={index} className="bg-white dark:bg-black border-none rounded-3xl shadow-sm hover:shadow-md transition-all">
-                  <CardHeader>
-                    <CardTitle className="text-xl font-semibold">{resource.title}</CardTitle>
-                    <CardDescription className="text-gray-600 dark:text-gray-300">{resource.description}</CardDescription>
-                  </CardHeader>
-                  <CardFooter>
-                    <Button 
-                      className="w-full bg-[#0070c9] hover:bg-[#0070c9]/90 text-white rounded-full font-medium" 
-                      asChild
-                    >
-                      <a href={resource.link} download>{t.shop.downloadNow}</a>
-                    </Button>
-                  </CardFooter>
-                </Card>
+                <Scale key={index} delay={index * 0.1}>
+                  <Card className="bg-white dark:bg-black border border-gray-100 dark:border-gray-800 rounded-3xl shadow-sm hover:shadow-md transition-all">
+                    <CardHeader>
+                      <div className="mb-4 p-3 bg-gray-100 dark:bg-gray-800 rounded-full w-12 h-12 flex items-center justify-center">
+                        <Package className="h-6 w-6" />
+                      </div>
+                      <CardTitle className="text-xl font-medium">{resource.title}</CardTitle>
+                      <CardDescription className="text-gray-600 dark:text-gray-300">{resource.description}</CardDescription>
+                    </CardHeader>
+                    <CardFooter>
+                      <Button 
+                        className="w-full bg-black hover:bg-black/90 dark:bg-white dark:hover:bg-white/90 dark:text-black text-white rounded-full font-medium" 
+                        asChild
+                      >
+                        <a href={resource.link} download>{t.shop.downloadNow}</a>
+                      </Button>
+                    </CardFooter>
+                  </Card>
+                </Scale>
               ))}
             </div>
           </section>

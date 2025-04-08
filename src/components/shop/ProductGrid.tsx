@@ -5,6 +5,8 @@ import { Badge } from "@/components/ui/badge";
 import { ShoppingCart, Star } from "lucide-react";
 import { Product } from "@/services/productService";
 import { useState } from "react";
+import { motion } from "framer-motion";
+import { Scale } from "@/components/ui/transitions";
 
 interface ProductGridProps {
   products: Product[];
@@ -34,65 +36,71 @@ const ProductGrid = ({
           <p className="text-muted-foreground">{t.shop.noProducts}</p>
         </div>
       ) : (
-        products.map((product) => (
-          <Card 
-            key={product.id} 
-            className={`service-card overflow-hidden transition-all duration-300 hover-scale ${cardClassName}`}
-            onMouseEnter={() => setHoveredProduct(product.id)}
-            onMouseLeave={() => setHoveredProduct(null)}
-          >
-            <div className="relative aspect-square overflow-hidden">
-              <img 
-                src={product.image} 
-                alt={product.name} 
-                className={`object-cover w-full h-full transition-transform duration-500 transform-gpu hover:scale-105 ${imageClassName}`}
-              />
-              {product.isNew && (
-                <Badge className="absolute top-3 left-3 bg-primary text-white">
-                  {t.shop.new}
-                </Badge>
-              )}
-              {product.discount > 0 && (
-                <Badge className="absolute top-3 right-3 bg-destructive text-white">
-                  {t.shop.discount.replace('{discount}', product.discount)}
-                </Badge>
-              )}
-            </div>
-            
-            <CardHeader className="pb-2">
-              <div className="flex items-center justify-between">
-                <h3 className="text-lg font-bold">{product.name}</h3>
-                <div className="flex items-center">
-                  <Star className="w-4 h-4 fill-yellow-400 stroke-yellow-400 mr-1" />
-                  <span className="text-sm">{product.rating}</span>
-                </div>
-              </div>
-            </CardHeader>
-            
-            <CardContent className={contentClassName}>
-              <p className="text-muted-foreground text-sm mb-4">{product.description}</p>
-              <div className="flex items-center justify-between">
-                {product.discountedPrice ? (
-                  <div className="space-x-2">
-                    <span className="text-xl font-bold">${product.discountedPrice}</span>
-                    <span className="text-muted-foreground line-through">${product.price}</span>
-                  </div>
-                ) : (
-                  <span className="text-xl font-bold">${product.price}</span>
+        products.map((product, index) => (
+          <Scale key={product.id} delay={index * 0.1}>
+            <Card 
+              className={`service-card overflow-hidden transition-all duration-300 hover-scale ${cardClassName}`}
+              onMouseEnter={() => setHoveredProduct(product.id)}
+              onMouseLeave={() => setHoveredProduct(null)}
+            >
+              <div className="relative aspect-square overflow-hidden">
+                <motion.img 
+                  src={product.image} 
+                  alt={product.name} 
+                  className={`object-cover w-full h-full transition-transform duration-500 transform-gpu hover:scale-105 ${imageClassName}`}
+                  initial={{ opacity: 0.6 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5 }}
+                  whileHover={{ scale: 1.05 }}
+                />
+                {product.isNew && (
+                  <Badge className="absolute top-3 left-3 bg-primary text-white">
+                    {t.shop.new}
+                  </Badge>
+                )}
+                {product.discount > 0 && (
+                  <Badge className="absolute top-3 right-3 bg-destructive text-white">
+                    {t.shop.discount.replace('{discount}', product.discount)}
+                  </Badge>
                 )}
               </div>
-            </CardContent>
+              
+              <CardHeader className="pb-2">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-lg font-medium tracking-tight">{product.name}</h3>
+                  <div className="flex items-center">
+                    <Star className="w-4 h-4 fill-yellow-400 stroke-yellow-400 mr-1" />
+                    <span className="text-sm">{product.rating}</span>
+                  </div>
+                </div>
+              </CardHeader>
+              
+              <CardContent className={contentClassName}>
+                <p className="text-muted-foreground text-sm mb-4 line-clamp-2">{product.description}</p>
+                <div className="flex items-center justify-between">
+                  {product.discountedPrice ? (
+                    <div className="space-x-2">
+                      <span className="text-xl font-medium">${product.discountedPrice}</span>
+                      <span className="text-muted-foreground line-through">${product.price}</span>
+                    </div>
+                  ) : (
+                    <span className="text-xl font-medium">${product.price}</span>
+                  )}
+                </div>
+              </CardContent>
 
-            <CardFooter>
-              <Button 
-                className={`w-full group ${buttonClassName}`} 
-                onClick={() => addToCart(product)}
-              >
-                <ShoppingCart className="mr-2 h-4 w-4 group-hover:animate-bounce" />
-                {t.shop.addToCart}
-              </Button>
-            </CardFooter>
-          </Card>
+              <CardFooter>
+                <Button 
+                  className={`w-full group ${buttonClassName}`} 
+                  onClick={() => addToCart(product)}
+                  variant="outline"
+                >
+                  <ShoppingCart className="mr-2 h-4 w-4 group-hover:animate-bounce" />
+                  {t.shop.addToCart}
+                </Button>
+              </CardFooter>
+            </Card>
+          </Scale>
         ))
       )}
     </div>
