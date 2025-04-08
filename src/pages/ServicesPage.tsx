@@ -143,6 +143,7 @@ const ServicesPage = () => {
 
   const handleAddToCart = (service: Service) => {
     addToCart(service);
+    toast.success(`${service.name} added to cart`);
   };
 
   const formatPrice = (price: number) => {
@@ -154,46 +155,49 @@ const ServicesPage = () => {
   };
 
   return (
-    <div className="flex flex-col w-full">
-      {/* Hero Section with Video Background */}
-      <section className="relative min-h-[90vh] flex items-center">
+    <div className="flex flex-col w-full bg-white dark:bg-black">
+      {/* Hero Section with video background */}
+      <section className="relative min-h-screen flex items-center">
         <VideoBackground 
           videoSrc="/video.mp4" 
-          overlayOpacity={0.7}
+          overlayOpacity={0.5}
           overlayColor="#000000"
           posterImage="/graphic_design.jpg"
         />
         
         <div className="container px-6 mx-auto relative z-10 py-32">
-          <div className="max-w-3xl mx-auto text-center text-white">
-            <div className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-primary/30 text-white mb-6">
-              <span>Our Services</span>
-            </div>
-            <h1 className="text-4xl sm:text-5xl font-display font-bold tracking-tight mb-6 animate-fade-up text-white">
+          <div className="max-w-4xl mx-auto text-center text-white">
+            <h1 className="text-5xl md:text-7xl font-semibold tracking-tight mb-8">
               Comprehensive Digital Branding Solutions
             </h1>
-            <p className="text-lg text-white/80 animate-fade-up" style={{ animationDelay: "100ms" }}>
+            <p className="text-xl md:text-2xl text-white/80 leading-relaxed mb-12 max-w-3xl mx-auto">
               Explore our range of services designed to elevate your brand presence and drive business growth.
             </p>
+            <Button 
+              className="bg-white text-[#0070c9] hover:bg-white/90 rounded-full py-6 px-8 text-lg font-medium"
+              asChild
+            >
+              <a href="#services">View Our Services</a>
+            </Button>
           </div>
         </div>
       </section>
 
-      {/* Services Navigation */}
-      <section className="sticky top-16 z-40 bg-blue/90 backdrop-blur-md border-b border-border shadow-sm">
-        <div className="container px-6 mx-auto">
+      {/* Services Navigation - Apple-style sticky tabs */}
+      <section id="services" className="sticky top-16 z-40 bg-white/90 dark:bg-black/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 shadow-sm">
+        <div className="container px-6 mx-auto max-w-6xl">
           <div className="py-4 overflow-x-auto">
-            <div className="flex space-x-6 min-w-max">
+            <div className="flex space-x-8 min-w-max justify-center">
               {services.map((service) => (
                 <button
                   key={service.id}
-                  className={`text-sm font-medium whitespace-nowrap pb-1 ${
+                  className={`text-base font-medium whitespace-nowrap pb-1 ${
                     activeSection === service.id
-                      ? "text-primary border-b-2 border-primary"
-                      : "text-slate-400 hover:text-sky-600"
+                      ? "text-[#0070c9] border-b-2 border-[#0070c9]"
+                      : "text-gray-600 dark:text-gray-300 hover:text-[#0070c9]"
                   }`}
                   onClick={() => {
-                    serviceRefs.current[service.id]?.scrollIntoView({ behavior: "smooth", block: "center" });
+                    serviceRefs.current[service.id]?.scrollIntoView({ behavior: "smooth", block: "start" });
                     setActiveSection(service.id);
                   }}
                 >
@@ -206,61 +210,64 @@ const ServicesPage = () => {
       </section>
 
       {/* Individual Services with Image Backgrounds */}
-      <section className="py-20 bg-secondry">
-        <div className="container px-6 mx-auto">
+      <section className="py-24">
+        <div className="container px-6 mx-auto max-w-6xl">
           <div className="max-w-3xl mx-auto text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
+            <h2 className="text-3xl md:text-5xl font-semibold mb-6">
               Our Service Offerings
             </h2>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-xl text-gray-500 dark:text-gray-400">
               Browse our comprehensive range of branding and marketing services.
             </p>
           </div>
 
-          <div className="space-y-0">
-            {services.map((service, index) => (
+          <div className="space-y-32">
+            {services.map((service) => (
               <div 
                 key={service.id}
                 id={service.id}
                 ref={(el) => (serviceRefs.current[service.id] = el)}
-                className="relative min-h-[80vh] flex items-center"
+                className="grid md:grid-cols-2 gap-16 items-center"
               >
-                {/* Background Image with Overlay */}
-                <div className="absolute inset-0 w-full h-full z-0">
-                  <img 
-                    src={service.image} 
-                    alt={service.name} 
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-black/60"></div>
+                <div>
+                  <div className="relative aspect-square overflow-hidden rounded-3xl shadow-lg">
+                    <img 
+                      src={service.image} 
+                      alt={service.name} 
+                      className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                    />
+                  </div>
                 </div>
                 
-                <div className="container relative z-10 px-6 py-20">
-                  <div className="max-w-xl mx-auto text-white">
-                    <div className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-primary/30 text-white mb-4">
-                      <span>Service</span>
-                    </div>
-                    <h2 className="text-3xl font-display font-bold mb-4 text-white">
-                      {service.name}
-                    </h2>
-                    <p className="text-white/90 mb-6">
-                      {service.description}
-                    </p>
-                    <p className="text-2xl font-display font-bold text-white mb-6">
-                      {formatPrice(service.price)}
-                    </p>
-                    <div className="flex flex-col sm:flex-row gap-4">
-                      <Button onClick={() => handleAddToCart(service)}>
-                        <Plus size={16} className="mr-2" />
-                        Add to Cart
-                      </Button>
-                      <Button variant="outline" className="bg-transparent text-white border-white hover:bg-white/10" asChild>
-                        <Link to="/contact">
-                          Request Info
-                          <ArrowRight size={16} className="ml-2" />
-                        </Link>
-                      </Button>
-                    </div>
+                <div className="space-y-6">
+                  <h5 className="text-[#0070c9] font-medium">Service</h5>
+                  <h2 className="text-3xl md:text-4xl font-semibold mb-4">
+                    {service.name}
+                  </h2>
+                  <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
+                    {service.description}
+                  </p>
+                  <p className="text-3xl font-semibold mb-8">
+                    {formatPrice(service.price)}
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <Button 
+                      onClick={() => handleAddToCart(service)}
+                      className="bg-[#0070c9] hover:bg-[#0070c9]/90 text-white rounded-full py-6 px-8 text-lg font-medium"
+                    >
+                      <Plus size={18} className="mr-2" />
+                      Add to Cart
+                    </Button>
+                    <Button 
+                      variant="outline" 
+                      className="border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 rounded-full py-6 px-8 text-lg font-medium hover:bg-gray-100 dark:hover:bg-gray-900"
+                      asChild
+                    >
+                      <Link to="/contact">
+                        Request Info
+                        <ArrowRight size={18} className="ml-2" />
+                      </Link>
+                    </Button>
                   </div>
                 </div>
               </div>
@@ -269,26 +276,15 @@ const ServicesPage = () => {
         </div>
       </section>
 
-      {/* Packages Section with Background */}
-      <section className="py-20 relative overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="/branding.jpg" 
-            alt="Branding Packages" 
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-black/70"></div>
-        </div>
-
-        <div className="container px-6 mx-auto relative z-10">
+      {/* Packages Section */}
+      <section className="py-24 bg-gray-50 dark:bg-neutral-900">
+        <div className="container px-6 mx-auto max-w-6xl">
           <div className="max-w-3xl mx-auto text-center mb-16">
-            <div className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-primary/30 text-white mb-4">
-              <span>Value Packages</span>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 text-white">
+            <h5 className="text-[#0070c9] font-medium mb-4">Value Packages</h5>
+            <h2 className="text-3xl md:text-5xl font-semibold mb-6">
               Branding Packages
             </h2>
-            <p className="text-lg text-white/80">
+            <p className="text-xl text-gray-500 dark:text-gray-400">
               Choose from our carefully curated packages for comprehensive branding solutions.
             </p>
           </div>
@@ -307,47 +303,53 @@ const ServicesPage = () => {
                 <div 
                   key={pkg.id} 
                   className={`
-                    relative rounded-xl border bg-white/10 backdrop-blur-md shadow-sm transition-all duration-300 
-                    hover:shadow-md animate-fade-up
-                    ${pkg.recommended ? 'border-primary ring-1 ring-primary' : 'border-white/20'}
+                    relative rounded-3xl bg-white dark:bg-black shadow-sm transition-all duration-300 
+                    hover:shadow-lg p-8
+                    ${pkg.recommended ? 'ring-2 ring-[#0070c9]' : ''}
                   `}
-                  style={{ animationDelay: `${index * 100}ms` }}
                 >
                   {pkg.recommended && (
                     <div className="absolute -top-3 inset-x-0 flex justify-center">
-                      <span className="px-3 py-1 text-xs font-medium text-white bg-primary rounded-full">
+                      <span className="px-4 py-1 text-sm font-medium text-white bg-[#0070c9] rounded-full">
                         Recommended
                       </span>
                     </div>
                   )}
 
-                  <div className="p-6">
-                    <h3 className="text-2xl font-display font-bold mb-2 text-white">{pkg.name}</h3>
-                    <p className="text-white/80 mb-4">{pkg.description}</p>
+                  <div className="pt-6">
+                    <h3 className="text-2xl font-semibold mb-2">{pkg.name}</h3>
+                    <p className="text-gray-600 dark:text-gray-400 mb-4">{pkg.description}</p>
                     <div className="mb-6">
-                      <span className="text-3xl font-display font-bold text-white">{formatPrice(pkg.price)}</span>
+                      <span className="text-4xl font-semibold">{formatPrice(pkg.price)}</span>
                     </div>
                     
-                    <ul className="space-y-3 mb-8">
+                    <ul className="space-y-4 mb-8">
                       {pkg.features.map((feature, i) => (
                         <li key={i} className="flex items-start">
-                          <Check className="h-5 w-5 text-primary flex-shrink-0 mr-3 mt-0.5" />
-                          <span className="text-white/90">{feature}</span>
+                          <Check className="h-5 w-5 text-[#0070c9] flex-shrink-0 mr-3 mt-0.5" />
+                          <span className="text-gray-700 dark:text-gray-300">{feature}</span>
                         </li>
                       ))}
                     </ul>
                     
                     <div className="flex flex-col gap-3 mt-auto">
                       <Button 
-                        className={pkg.recommended ? "bg-primary hover:bg-primary/90" : ""}
+                        className={`
+                          ${pkg.recommended ? 'bg-[#0070c9]' : 'bg-[#0070c9]'} 
+                          hover:bg-[#0070c9]/90 text-white rounded-full py-6 text-lg font-medium
+                        `}
                         onClick={() => {
-                          addToCart(packageService);
+                          handleAddToCart(packageService);
                         }}
                       >
-                        <Plus size={16} className="mr-2" />
+                        <Plus size={18} className="mr-2" />
                         Add to Cart
                       </Button>
-                      <Button variant="outline" className="bg-transparent text-white border-white hover:bg-white/10" asChild>
+                      <Button 
+                        variant="outline" 
+                        className="border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 rounded-full py-6 text-lg font-medium hover:bg-gray-100 dark:hover:bg-gray-900" 
+                        asChild
+                      >
                         <Link to="/contact">
                           Contact Us
                         </Link>
@@ -362,95 +364,85 @@ const ServicesPage = () => {
       </section>
 
       {/* Process Section */}
-      <section className="py-20 relative">
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="/about_thumb_1.jpg" 
-            alt="Our Process" 
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-black/60"></div>
-        </div>
-        
-        <div className="container px-6 mx-auto relative z-10">
+      <section className="py-24 bg-white dark:bg-black">
+        <div className="container px-6 mx-auto max-w-6xl">
           <div className="max-w-3xl mx-auto text-center mb-16">
-            <div className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-primary/30 text-white mb-4">
-              <span>Our Process</span>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 text-white">
+            <h5 className="text-[#0070c9] font-medium mb-4">Our Process</h5>
+            <h2 className="text-3xl md:text-5xl font-semibold mb-6">
               How We Work
             </h2>
-            <p className="text-lg text-white/80">
+            <p className="text-xl text-gray-500 dark:text-gray-400">
               Our structured approach ensures quality results and a smooth experience.
             </p>
           </div>
 
-          <div className="relative max-w-4xl mx-auto">
-            <div className="absolute left-12 top-0 bottom-0 w-0.5 bg-white/30 md:left-1/2 md:-ml-0.5"></div>
-            
-            <div className="space-y-12">
-              {[
-                {
-                  title: "Discovery & Analysis",
-                  description: "We begin by understanding your business, goals, target audience, and competitive landscape to inform our strategy."
-                },
-                {
-                  title: "Strategy Development",
-                  description: "Based on our findings, we develop a comprehensive branding and marketing strategy tailored to your objectives."
-                },
-                {
-                  title: "Creative Execution",
-                  description: "Our creative team brings the strategy to life through design, content creation, and development."
-                },
-                {
-                  title: "Implementation",
-                  description: "We implement the brand assets and marketing materials across all relevant platforms and channels."
-                },
-                {
-                  title: "Evaluation & Refinement",
-                  description: "We continuously monitor performance and make refinements to optimize results."
-                }
-              ].map((step, index) => (
-                <div key={index} className="relative flex items-start">
-                  <div className="absolute left-0 mt-1 md:left-1/2 md:-ml-6">
-                    <div className="h-12 w-12 rounded-full bg-primary flex items-center justify-center text-white font-medium text-lg">
-                      {index + 1}
-                    </div>
-                  </div>
-                  <div className={`ml-20 md:w-1/2 ${index % 2 === 0 ? 'md:ml-0 md:mr-auto md:pr-16 md:text-right' : 'md:ml-auto md:pl-16'}`}>
-                    <h3 className="text-xl font-medium mb-2 text-white">{step.title}</h3>
-                    <p className="text-white/80">{step.description}</p>
-                  </div>
+          <div className="grid md:grid-cols-5 gap-6">
+            {[
+              {
+                title: "Discovery & Analysis",
+                description: "We begin by understanding your business, goals, target audience, and competitive landscape to inform our strategy."
+              },
+              {
+                title: "Strategy Development",
+                description: "Based on our findings, we develop a comprehensive branding and marketing strategy tailored to your objectives."
+              },
+              {
+                title: "Creative Execution",
+                description: "Our creative team brings the strategy to life through design, content creation, and development."
+              },
+              {
+                title: "Implementation",
+                description: "We implement the brand assets and marketing materials across all relevant platforms and channels."
+              },
+              {
+                title: "Evaluation & Refinement",
+                description: "We continuously monitor performance and make refinements to optimize results."
+              }
+            ].map((step, index) => (
+              <div 
+                key={index}
+                className="rounded-3xl bg-gray-50 dark:bg-neutral-900 p-8 flex flex-col h-full"
+              >
+                <div className="h-12 w-12 rounded-full bg-[#0070c9] flex items-center justify-center text-white font-medium text-lg mb-6">
+                  {index + 1}
                 </div>
-              ))}
-            </div>
+                <h3 className="text-xl font-semibold mb-4">{step.title}</h3>
+                <p className="text-gray-600 dark:text-gray-300">{step.description}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-primary text-white">
-        <div className="container px-6 mx-auto">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 animate-fade-up">
-              Ready to Transform Your Brand?
-            </h2>
-            <p className="text-lg text-white/80 mb-8 animate-fade-up" style={{ animationDelay: "100ms" }}>
-              Contact us today to discuss your project or explore our service packages.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4 animate-fade-up" style={{ animationDelay: "200ms" }}>
-              <Button size="lg" variant="secondary" asChild>
-                <Link to="/contact">
-                  Contact Us
-                </Link>
-              </Button>
-              <Button size="lg" variant="outline" className="bg-primary text-white border-white hover:bg-white/10" asChild>
-                <Link to="/cart">
-                  View Cart
-                  <ArrowRight size={16} className="ml-2" />
-                </Link>
-              </Button>
-            </div>
+      <section className="py-24 bg-gradient-to-b from-[#0070c9] to-[#134e7c] text-white">
+        <div className="container px-6 mx-auto max-w-4xl text-center">
+          <h2 className="text-3xl md:text-5xl font-semibold mb-8">
+            Ready to Transform Your Brand?
+          </h2>
+          <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
+            Contact us today to discuss your project or explore our service packages.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center gap-6">
+            <Button 
+              size="lg" 
+              className="bg-white text-[#0070c9] hover:bg-white/90 rounded-full py-6 px-8 text-lg font-medium" 
+              asChild
+            >
+              <Link to="/contact">
+                Contact Us
+              </Link>
+            </Button>
+            <Button 
+              size="lg" 
+              className="bg-transparent text-white hover:bg-white/10 border border-white rounded-full py-6 px-8 text-lg font-medium"
+              asChild
+            >
+              <Link to="/cart">
+                View Cart
+                <ArrowRight size={18} className="ml-2" />
+              </Link>
+            </Button>
           </div>
         </div>
       </section>

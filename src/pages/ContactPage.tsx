@@ -40,81 +40,71 @@ const ContactPage = () => {
   };
 
   return (
-    <div className="flex flex-col w-full">
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-secondary">
-        <div className="absolute inset-0 -z-10 overflow-hidden">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/5 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 -left-40 w-80 h-80 bg-primary/5 rounded-full blur-3xl"></div>
-        </div>
-
-        <div className="container px-6 mx-auto">
-          <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-primary/10 text-primary mb-6">
-              <span>Contact Us</span>
-            </div>
-            <h1 className="text-4xl sm:text-5xl font-display font-bold tracking-tight mb-6 animate-fade-up">
+    <div className="flex flex-col w-full bg-white dark:bg-black">
+      {/* Hero Section - Large, simple text with generous spacing */}
+      <section className="pt-32 pb-16 md:pt-40 md:pb-24">
+        <div className="container px-6 mx-auto max-w-6xl">
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 className="text-5xl md:text-7xl font-semibold tracking-tight mb-8">
               Get in Touch
             </h1>
-            <p className="text-lg text-muted-foreground animate-fade-up" style={{ animationDelay: "100ms" }}>
+            <p className="text-xl md:text-2xl text-gray-500 dark:text-gray-400 leading-relaxed mb-8 max-w-3xl mx-auto">
               Have a project in mind or questions about our services? We'd love to hear from you.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Contact Form & Info */}
-      <section className="py-20 bg-secondry">
-        <div className="container px-6 mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-start">
-            <div className="animate-fade-right">
+      {/* Contact Form & Info - Clean grid layout */}
+      <section className="py-24 bg-gray-50 dark:bg-neutral-900">
+        <div className="container px-6 mx-auto max-w-6xl">
+          <div className="grid lg:grid-cols-2 gap-16 items-start">
+            <div>
               <div className="max-w-md">
-                <div className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-primary/10 text-primary mb-4">
-                  <span>Contact Information</span>
-                </div>
-                <h2 className="text-3xl font-display font-bold mb-6">
+                <h5 className="text-[#0070c9] font-medium mb-4">Contact Information</h5>
+                <h2 className="text-3xl md:text-4xl font-semibold mb-6">
                   Let's Discuss Your Project
                 </h2>
-                <p className="text-muted-foreground mb-8">
+                <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-12">
                   Ready to elevate your brand? Our team is here to help turn your vision into reality. 
                   Fill out the form or contact us directly using the information below.
                 </p>
 
-                <div className="space-y-6 mb-8">
-                  <div className="flex items-start space-x-4">
-                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                      <Phone className="h-5 w-5 text-primary" />
+                <div className="space-y-8 mb-12">
+                  <div className="flex items-start space-x-5">
+                    <div className="w-10 h-10 rounded-full bg-[#f5f5f7] dark:bg-neutral-800 flex items-center justify-center flex-shrink-0">
+                      <Phone className="h-5 w-5 text-[#0070c9]" />
                     </div>
                     <div>
-                      <h3 className="font-medium mb-1">Phone</h3>
-                      <p className="text-muted-foreground">+263 775 353 142</p>
+                      <h3 className="text-lg font-semibold mb-1">Phone</h3>
+                      <p className="text-gray-600 dark:text-gray-300">+263 775 353 142</p>
                     </div>
                   </div>
 
-                  <div className="flex items-start space-x-4">
-                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                      <Mail className="h-5 w-5 text-primary" />
+                  <div className="flex items-start space-x-5">
+                    <div className="w-10 h-10 rounded-full bg-[#f5f5f7] dark:bg-neutral-800 flex items-center justify-center flex-shrink-0">
+                      <Mail className="h-5 w-5 text-[#0070c9]" />
                     </div>
                     <div>
-                      <h3 className="font-medium mb-1">Email</h3>
-                      <p className="text-muted-foreground">info@reserveddigitalbranding.com</p>
+                      <h3 className="text-lg font-semibold mb-1">Email</h3>
+                      <p className="text-gray-600 dark:text-gray-300">info@reserveddigitalbranding.com</p>
                     </div>
                   </div>
 
-                  <div className="flex items-start space-x-4">
-                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                      <MapPin className="h-5 w-5 text-primary" />
+                  <div className="flex items-start space-x-5">
+                    <div className="w-10 h-10 rounded-full bg-[#f5f5f7] dark:bg-neutral-800 flex items-center justify-center flex-shrink-0">
+                      <MapPin className="h-5 w-5 text-[#0070c9]" />
                     </div>
                     <div>
-                      <h3 className="font-medium mb-1">Office</h3>
-                      <p className="text-muted-foreground">Harare, Zimbabwe</p>
+                      <h3 className="text-lg font-semibold mb-1">Office</h3>
+                      <p className="text-gray-600 dark:text-gray-300">Harare, Zimbabwe</p>
                     </div>
                   </div>
                 </div>
 
-                <div className="p-6 bg-secondary rounded-xl">
-                  <h3 className="text-lg font-medium mb-2">Business Hours</h3>
-                  <div className="space-y-1 text-muted-foreground">
+                <div className="p-8 bg-white dark:bg-neutral-800 rounded-3xl shadow-sm">
+                  <h3 className="text-xl font-semibold mb-4">Business Hours</h3>
+                  <div className="space-y-2 text-gray-600 dark:text-gray-300">
                     <p>Monday - Friday: 8:00 AM - 5:00 PM</p>
                     <p>Saturday: 9:00 AM - 1:00 PM</p>
                     <p>Sunday: Closed</p>
@@ -123,14 +113,14 @@ const ContactPage = () => {
               </div>
             </div>
 
-            <div className="animate-fade-left">
-              <div className="bg-secondry p-8 rounded-xl border border-border shadow-sm">
-                <h3 className="text-2xl font-display font-bold mb-6">Send Us a Message</h3>
+            <div>
+              <div className="bg-white dark:bg-neutral-800 p-8 md:p-12 rounded-3xl shadow-sm">
+                <h3 className="text-2xl font-semibold mb-8">Send Us a Message</h3>
                 
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid sm:grid-cols-2 gap-4">
+                  <div className="grid sm:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <label htmlFor="name" className="text-sm font-medium">
+                      <label htmlFor="name" className="text-sm font-medium text-gray-700 dark:text-gray-300">
                         Full Name
                       </label>
                       <Input
@@ -140,10 +130,11 @@ const ContactPage = () => {
                         value={formData.name}
                         onChange={handleChange}
                         required
+                        className="rounded-xl border-gray-300 dark:border-gray-700 focus:border-[#0070c9] focus:ring-[#0070c9] h-12"
                       />
                     </div>
                     <div className="space-y-2">
-                      <label htmlFor="email" className="text-sm font-medium">
+                      <label htmlFor="email" className="text-sm font-medium text-gray-700 dark:text-gray-300">
                         Email Address
                       </label>
                       <Input
@@ -154,13 +145,14 @@ const ContactPage = () => {
                         value={formData.email}
                         onChange={handleChange}
                         required
+                        className="rounded-xl border-gray-300 dark:border-gray-700 focus:border-[#0070c9] focus:ring-[#0070c9] h-12"
                       />
                     </div>
                   </div>
 
-                  <div className="grid sm:grid-cols-2 gap-4">
+                  <div className="grid sm:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <label htmlFor="phone" className="text-sm font-medium">
+                      <label htmlFor="phone" className="text-sm font-medium text-gray-700 dark:text-gray-300">
                         Phone Number
                       </label>
                       <Input
@@ -170,10 +162,11 @@ const ContactPage = () => {
                         value={formData.phone}
                         onChange={handleChange}
                         required
+                        className="rounded-xl border-gray-300 dark:border-gray-700 focus:border-[#0070c9] focus:ring-[#0070c9] h-12"
                       />
                     </div>
                     <div className="space-y-2">
-                      <label htmlFor="subject" className="text-sm font-medium">
+                      <label htmlFor="subject" className="text-sm font-medium text-gray-700 dark:text-gray-300">
                         Subject
                       </label>
                       <Input
@@ -183,12 +176,13 @@ const ContactPage = () => {
                         value={formData.subject}
                         onChange={handleChange}
                         required
+                        className="rounded-xl border-gray-300 dark:border-gray-700 focus:border-[#0070c9] focus:ring-[#0070c9] h-12"
                       />
                     </div>
                   </div>
 
                   <div className="space-y-2">
-                    <label htmlFor="message" className="text-sm font-medium">
+                    <label htmlFor="message" className="text-sm font-medium text-gray-700 dark:text-gray-300">
                       Message
                     </label>
                     <Textarea
@@ -199,13 +193,18 @@ const ContactPage = () => {
                       value={formData.message}
                       onChange={handleChange}
                       required
-                      className="resize-none"
+                      className="rounded-xl border-gray-300 dark:border-gray-700 focus:border-[#0070c9] focus:ring-[#0070c9] resize-none"
                     />
                   </div>
 
-                  <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
+                  <Button 
+                    type="submit" 
+                    size="lg" 
+                    className="w-full bg-[#0070c9] hover:bg-[#0070c9]/90 text-white rounded-full py-6 font-medium"
+                    disabled={isSubmitting}
+                  >
                     {isSubmitting ? "Sending Message..." : "Send Message"}
-                    <ArrowRight size={16} className="ml-2" />
+                    <ArrowRight size={18} className="ml-2" />
                   </Button>
                 </form>
               </div>
@@ -214,22 +213,20 @@ const ContactPage = () => {
         </div>
       </section>
 
-      {/* Map Section */}
-      <section className="py-20 bg-secondary">
-        <div className="container px-6 mx-auto">
+      {/* Map Section - Full-width, cleaner presentation */}
+      <section className="py-24 bg-white dark:bg-black">
+        <div className="container px-6 mx-auto max-w-6xl">
           <div className="max-w-3xl mx-auto text-center mb-16">
-            <div className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-primary/10 text-primary mb-4">
-              <span>Our Location</span>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
+            <h5 className="text-[#0070c9] font-medium mb-4">Our Location</h5>
+            <h2 className="text-3xl md:text-4xl font-semibold mb-6">
               Visit Our Office
             </h2>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-xl text-gray-500 dark:text-gray-400">
               We'd love to meet you in person to discuss your branding and marketing needs.
             </p>
           </div>
 
-          <div className="rounded-xl overflow-hidden shadow-xl h-[400px] animate-fade-up">
+          <div className="rounded-3xl overflow-hidden shadow-lg h-[500px]">
             <iframe 
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d121059.04711152113!2d31.04149765771209!3d-17.82797038386203!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1931a4e706887e3b%3A0xa7f1260b62781a98!2sHarare%2C%20Zimbabwe!5e0!3m2!1sen!2sus!4v1671656965305!5m2!1sen!2sus" 
               width="100%" 
@@ -244,22 +241,20 @@ const ContactPage = () => {
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="py-20 bg-secondry">
-        <div className="container px-6 mx-auto">
+      {/* FAQ Section - Clean, simple accordion style */}
+      <section className="py-24 bg-gray-50 dark:bg-neutral-900">
+        <div className="container px-6 mx-auto max-w-6xl">
           <div className="max-w-3xl mx-auto text-center mb-16">
-            <div className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-primary/10 text-primary mb-4">
-              <span>FAQs</span>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
+            <h5 className="text-[#0070c9] font-medium mb-4">FAQs</h5>
+            <h2 className="text-3xl md:text-4xl font-semibold mb-6">
               Frequently Asked Questions
             </h2>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-xl text-gray-500 dark:text-gray-400">
               Find answers to common questions about our services and processes.
             </p>
           </div>
 
-          <div className="max-w-3xl mx-auto divide-y divide-border">
+          <div className="max-w-3xl mx-auto divide-y divide-gray-200 dark:divide-gray-700">
             {[
               {
                 question: "What types of businesses do you work with?",
@@ -282,32 +277,34 @@ const ContactPage = () => {
                 answer: "The process begins with an initial consultation where we discuss your goals, requirements, and vision. Based on this, we'll provide a proposal outlining our approach, timeline, and pricing. Once approved, we begin the creative process with regular updates and feedback sessions."
               }
             ].map((faq, index) => (
-              <div key={index} className="py-6 animate-fade-up" style={{ animationDelay: `${index * 100}ms` }}>
-                <h3 className="text-xl font-medium mb-3">{faq.question}</h3>
-                <p className="text-muted-foreground">{faq.answer}</p>
+              <div key={index} className="py-8">
+                <h3 className="text-2xl font-semibold mb-4">{faq.question}</h3>
+                <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">{faq.answer}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-primary text-white">
-        <div className="container px-6 mx-auto">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 animate-fade-up">
-              Ready to Start Your Branding Journey?
-            </h2>
-            <p className="text-lg text-white/80 mb-8 animate-fade-up" style={{ animationDelay: "100ms" }}>
-              Contact us today to schedule a consultation and discover how we can elevate your brand.
-            </p>
-            <div className="inline-block animate-fade-up" style={{ animationDelay: "200ms" }}>
-              <Button size="lg" variant="secondary" asChild>
-                <a href="tel:+2637753531425">
-                  Call Us Now: +263 775 353 142
-                </a>
-              </Button>
-            </div>
+      {/* CTA Section - Apple-style gradient */}
+      <section className="py-24 bg-gradient-to-b from-[#0070c9] to-[#134e7c] text-white">
+        <div className="container px-6 mx-auto max-w-4xl text-center">
+          <h2 className="text-3xl md:text-5xl font-semibold mb-8">
+            Ready to Start Your Branding Journey?
+          </h2>
+          <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
+            Contact us today to schedule a consultation and discover how we can elevate your brand.
+          </p>
+          <div className="inline-block">
+            <Button 
+              size="lg" 
+              className="bg-white text-[#0070c9] hover:bg-white/90 rounded-full py-6 px-8 text-lg font-medium" 
+              asChild
+            >
+              <a href="tel:+2637753531425">
+                Call Us Now: +263 775 353 142
+              </a>
+            </Button>
           </div>
         </div>
       </section>

@@ -6,15 +6,15 @@ import { ArrowRight } from "lucide-react";
 const Index = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-white dark:bg-black px-6 py-24">
-      <div className="text-center max-w-3xl mx-auto">
-        <h1 className="text-5xl md:text-6xl font-semibold mb-8">Welcome to Reserved Digital Branding</h1>
-        <p className="text-xl text-gray-500 dark:text-gray-400 mb-12 max-w-2xl mx-auto">
+      <div className="text-center max-w-4xl mx-auto">
+        <h1 className="text-5xl md:text-7xl font-semibold leading-tight mb-8">Welcome to Reserved Digital Branding</h1>
+        <p className="text-xl md:text-2xl text-gray-500 dark:text-gray-400 mb-12 max-w-3xl mx-auto">
           We create compelling brand experiences through strategic design and creative solutions.
         </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <div className="flex flex-col sm:flex-row gap-6 justify-center">
           <Button 
             size="lg"
-            className="rounded-full bg-blue-600 hover:bg-blue-700 text-white py-6 px-8"
+            className="bg-[#0070c9] hover:bg-[#0070c9]/90 text-white rounded-full py-6 px-8 text-lg font-medium"
             asChild
           >
             <Link to="/home">
@@ -25,18 +25,18 @@ const Index = () => {
           <Button 
             variant="outline" 
             size="lg" 
-            className="rounded-full border-gray-300 dark:border-gray-700 py-6 px-8"
+            className="border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 rounded-full py-6 px-8 text-lg font-medium hover:bg-gray-100 dark:hover:bg-gray-900"
             asChild
           >
             <Link to="/contact">Contact Us</Link>
           </Button>
         </div>
       </div>
-      <div className="mt-16">
+      <div className="mt-16 max-w-5xl mx-auto">
         <img 
-          src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2400&q=80" 
+          src="https://images.unsplash.com/photo-1542744173-8659d8bde375?q=80&w=2802&auto=format&fit=crop&ixlib=rb-4.0.3" 
           alt="Digital Branding" 
-          className="rounded-2xl shadow-lg max-w-4xl mx-auto"
+          className="rounded-3xl shadow-lg w-full"
         />
       </div>
     </div>

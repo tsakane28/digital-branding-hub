@@ -164,23 +164,23 @@ const PortfolioPage = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-background"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-white dark:bg-black"
         >
           <div className="container px-6 max-w-md">
             <div className="space-y-4">
-              <div className="h-8 w-48 bg-muted animate-pulse rounded" />
+              <div className="h-8 w-48 bg-gray-200 dark:bg-gray-800 animate-pulse rounded" />
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {[1, 2, 3, 4, 5, 6].map((i) => (
                   <div key={i} className="space-y-4">
-                    <div className="aspect-video bg-muted animate-pulse rounded-lg" />
-                    <div className="h-4 w-3/4 bg-muted animate-pulse rounded" />
-                    <div className="h-4 w-1/2 bg-muted animate-pulse rounded" />
+                    <div className="aspect-video bg-gray-200 dark:bg-gray-800 animate-pulse rounded-lg" />
+                    <div className="h-4 w-3/4 bg-gray-200 dark:bg-gray-800 animate-pulse rounded" />
+                    <div className="h-4 w-1/2 bg-gray-200 dark:bg-gray-800 animate-pulse rounded" />
                   </div>
                 ))}
               </div>
               <div className="mt-8 space-y-2">
-                <Progress value={loadingProgress} className="h-2" />
-                <div className="flex justify-between text-sm text-muted-foreground">
+                <Progress value={loadingProgress} className="h-1" />
+                <div className="flex justify-between text-sm text-gray-500 dark:text-gray-400">
                   <span>Loading portfolio...</span>
                   <span>{Math.round(loadingProgress)}%</span>
                 </div>
@@ -193,80 +193,69 @@ const PortfolioPage = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="flex flex-col w-full"
+          className="flex flex-col w-full bg-white dark:bg-black"
         >
-          {/* Hero Section */}
-          <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-secondary">
-            <div className="absolute inset-0 -z-10 overflow-hidden">
-              <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/5 rounded-full blur-3xl"></div>
-              <div className="absolute bottom-0 -left-40 w-80 h-80 bg-primary/5 rounded-full blur-3xl"></div>
-            </div>
-
-            <div className="container px-6 mx-auto">
-              <div className="max-w-3xl mx-auto text-center">
-                <div className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-primary/10 text-primary mb-6">
-                  <span>Our Portfolio</span>
-                </div>
-                <h1 className="text-4xl sm:text-5xl font-display font-bold tracking-tight mb-6 animate-fade-up">
+          {/* Hero Section - Large typography, Apple-style */}
+          <section className="pt-32 pb-16 md:pt-40 md:pb-24">
+            <div className="container px-6 mx-auto max-w-6xl">
+              <div className="max-w-4xl mx-auto text-center">
+                <h1 className="text-5xl md:text-7xl font-semibold tracking-tight mb-8">
                   Our Creative Work
                 </h1>
-                <p className="text-lg text-muted-foreground animate-fade-up" style={{ animationDelay: "100ms" }}>
+                <p className="text-xl md:text-2xl text-gray-500 dark:text-gray-400 leading-relaxed mb-8 max-w-3xl mx-auto">
                   Explore our collection of projects that showcase our expertise and creative approach.
                 </p>
               </div>
             </div>
           </section>
 
-          {/* Featured Projects */}
-          <section className="py-20 bg-secondary">
-            <div className="container px-6 mx-auto">
+          {/* Featured Projects - Large, premium display */}
+          <section className="py-24 bg-gray-50 dark:bg-neutral-900">
+            <div className="container px-6 mx-auto max-w-6xl">
               <div className="max-w-3xl mx-auto text-center mb-16">
-                <div className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-primary/10 text-primary mb-4">
-                  <span>Featured Work</span>
-                </div>
-                <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
+                <h5 className="text-[#0070c9] font-medium mb-4">Featured Work</h5>
+                <h2 className="text-3xl md:text-5xl font-semibold mb-6">
                   Our Proudest Achievements
                 </h2>
-                <p className="text-lg text-muted-foreground">
+                <p className="text-xl text-gray-500 dark:text-gray-400">
                   These signature projects represent our creative vision and the results we deliver.
                 </p>
               </div>
 
-              <div className="grid gap-8">
+              <div className="space-y-24">
                 {projects.filter(project => project.featured).map((project, index) => (
                   <div 
                     key={project.id} 
-                    className={`grid md:grid-cols-2 gap-12 items-center ${
-                      index % 2 === 1 ? "md:flex-row-reverse" : ""
-                    }`}
+                    className="grid md:grid-cols-2 gap-16 items-center"
                   >
                     <div className={`${index % 2 === 1 ? "md:order-2" : "md:order-1"}`}>
-                      <div className={`relative aspect-[4/3] rounded-2xl overflow-hidden shadow-xl animate-fade-right transition-opacity duration-1000`}>
+                      <div className="relative aspect-square overflow-hidden rounded-2xl shadow-lg">
                         <ImageWithFallback 
                           src={project.image} 
                           alt={project.title} 
-                          className="object-cover w-full h-full"
+                          className="object-cover w-full h-full hover:scale-105 transition-transform duration-700"
                         />
                       </div>
                     </div>
 
-                    <div className={`space-y-6 animate-fade-left ${index % 2 === 1 ? "md:order-1" : "md:order-2"}`}>
-                      <div className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-primary/10 text-primary">
-                        <span>{project.category}</span>
-                      </div>
-                      <h2 className="text-3xl font-display font-bold">
+                    <div className={`space-y-6 ${index % 2 === 1 ? "md:order-1" : "md:order-2"}`}>
+                      <h5 className="text-[#0070c9] font-medium">{project.category}</h5>
+                      <h2 className="text-3xl md:text-4xl font-semibold mb-4">
                         {project.title}
                       </h2>
-                      <p className="text-xl font-medium text-primary">
+                      <p className="text-xl font-medium">
                         {project.client}
                       </p>
-                      <p className="text-muted-foreground">
+                      <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
                         {project.description}
                       </p>
-                      <Button asChild variant="outline">
+                      <Button 
+                        className="bg-[#0070c9] hover:bg-[#0070c9]/90 text-white rounded-full py-6 px-8 text-base font-medium"
+                        asChild
+                      >
                         <Link to={`/portfolio/${project.id}`}>
                           View Details
-                          <ArrowRight size={16} className="ml-2" />
+                          <ArrowRight size={18} className="ml-2" />
                         </Link>
                       </Button>
                     </div>
@@ -276,24 +265,29 @@ const PortfolioPage = () => {
             </div>
           </section>
 
-          {/* Portfolio Grid */}
-          <section className="py-20 bg-secondary">
-            <div className="container px-6 mx-auto">
-              <div className="max-w-3xl mx-auto text-center mb-12">
-                <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
+          {/* Portfolio Grid - Clean, modern grid layout */}
+          <section className="py-24 bg-white dark:bg-black">
+            <div className="container px-6 mx-auto max-w-6xl">
+              <div className="max-w-3xl mx-auto text-center mb-16">
+                <h2 className="text-3xl md:text-5xl font-semibold mb-8">
                   Our Portfolio
                 </h2>
-                <p className="text-lg text-muted-foreground mb-8">
+                <p className="text-xl text-gray-500 dark:text-gray-400 mb-12">
                   Browse through our diverse range of projects across different categories.
                 </p>
                 
-                <div className="flex flex-wrap justify-center gap-3 mb-12">
+                <div className="flex flex-wrap justify-center gap-3 mb-16">
                   {categories.map((category) => (
                     <Button
                       key={category}
                       variant={selectedCategory === category ? "default" : "outline"}
                       onClick={() => setSelectedCategory(category)}
-                      className="rounded-full"
+                      className={`
+                        rounded-full text-base font-medium
+                        ${selectedCategory === category 
+                          ? 'bg-[#0070c9] text-white hover:bg-[#0070c9]/90' 
+                          : 'text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-700'}
+                      `}
                     >
                       {category}
                     </Button>
@@ -302,34 +296,33 @@ const PortfolioPage = () => {
               </div>
 
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                {filteredProjects.map((project, index) => (
+                {filteredProjects.map((project) => (
                   <div 
                     key={project.id} 
                     id={project.id}
-                    className="group bg-card rounded-xl overflow-hidden border border-border shadow-sm hover:shadow-md transition-shadow animate-fade-up"
-                    style={{ animationDelay: `${index * 100}ms` }}
+                    className="group bg-white dark:bg-neutral-900 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all"
                   >
                     <div className="aspect-[3/2] relative overflow-hidden">
                       <ImageWithFallback 
                         src={project.image} 
                         alt={project.title} 
-                        className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
+                        className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
                         <div className="p-6 w-full">
                           <p className="text-white font-medium">{project.category}</p>
                         </div>
                       </div>
                     </div>
-                    <div className="p-6">
-                      <h3 className="text-xl font-medium mb-2">{project.title}</h3>
-                      <p className="text-primary font-medium mb-3">{project.client}</p>
-                      <p className="text-muted-foreground mb-4 line-clamp-2">{project.description}</p>
+                    <div className="p-8">
+                      <h3 className="text-2xl font-semibold mb-2">{project.title}</h3>
+                      <p className="text-[#0070c9] font-medium mb-4">{project.client}</p>
+                      <p className="text-gray-600 dark:text-gray-300 mb-6 line-clamp-2">{project.description}</p>
                       <Link 
                         to={`/portfolio/${project.id}`}
-                        className="inline-flex items-center text-primary hover:text-primary/80 transition-colors"
+                        className="inline-flex items-center text-[#0070c9] font-medium hover:text-[#0070c9]/80 transition-colors"
                       >
-                        View Project <ExternalLink size={16} className="ml-2" />
+                        View Project <ExternalLink size={18} className="ml-2" />
                       </Link>
                     </div>
                   </div>
@@ -338,29 +331,35 @@ const PortfolioPage = () => {
             </div>
           </section>
 
-          {/* CTA Section */}
-          <section className="py-20 bg-primary text-white">
-            <div className="container px-6 mx-auto">
-              <div className="max-w-4xl mx-auto text-center">
-                <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 animate-fade-up">
-                  Ready to Create Your Success Story?
-                </h2>
-                <p className="text-lg text-white/80 mb-8 animate-fade-up" style={{ animationDelay: "100ms" }}>
-                  Let's collaborate to develop a brand strategy and design that will set you apart from the competition.
-                </p>
-                <div className="flex flex-col sm:flex-row justify-center gap-4 animate-fade-up" style={{ animationDelay: "200ms" }}>
-                  <Button size="lg" variant="secondary" asChild>
-                    <Link to="/contact">
-                      Get Started
-                    </Link>
-                  </Button>
-                  <Button size="lg" variant="outline" className="bg-primary text-white border-white hover:bg-white/10" asChild>
-                    <Link to="/services">
-                      View Services
-                      <ArrowRight size={16} className="ml-2" />
-                    </Link>
-                  </Button>
-                </div>
+          {/* CTA Section - Apple-style gradient */}
+          <section className="py-24 bg-gradient-to-b from-[#0070c9] to-[#134e7c] text-white">
+            <div className="container px-6 mx-auto max-w-4xl text-center">
+              <h2 className="text-3xl md:text-5xl font-semibold mb-8">
+                Ready to Create Your Success Story?
+              </h2>
+              <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
+                Let's collaborate to develop a brand strategy and design that will set you apart from the competition.
+              </p>
+              <div className="flex flex-col sm:flex-row justify-center gap-6">
+                <Button 
+                  size="lg" 
+                  className="bg-white text-[#0070c9] hover:bg-white/90 rounded-full py-6 px-8 text-lg font-medium" 
+                  asChild
+                >
+                  <Link to="/contact">
+                    Get Started
+                  </Link>
+                </Button>
+                <Button 
+                  size="lg" 
+                  className="bg-transparent text-white hover:bg-white/10 border border-white rounded-full py-6 px-8 text-lg font-medium"
+                  asChild
+                >
+                  <Link to="/services">
+                    View Services
+                    <ArrowRight size={18} className="ml-2" />
+                  </Link>
+                </Button>
               </div>
             </div>
           </section>
