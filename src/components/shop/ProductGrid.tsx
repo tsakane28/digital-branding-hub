@@ -10,9 +10,21 @@ interface ProductGridProps {
   products: Product[];
   addToCart: (product: Product) => void;
   t: any;
+  cardClassName?: string;
+  buttonClassName?: string;
+  imageClassName?: string;
+  contentClassName?: string;
 }
 
-const ProductGrid = ({ products, addToCart, t }: ProductGridProps) => {
+const ProductGrid = ({ 
+  products, 
+  addToCart, 
+  t,
+  cardClassName = "",
+  buttonClassName = "",
+  imageClassName = "",
+  contentClassName = ""
+}: ProductGridProps) => {
   const [hoveredProduct, setHoveredProduct] = useState<string | null>(null);
 
   return (
@@ -25,7 +37,7 @@ const ProductGrid = ({ products, addToCart, t }: ProductGridProps) => {
         products.map((product) => (
           <Card 
             key={product.id} 
-            className="service-card overflow-hidden transition-all duration-300 hover-scale"
+            className={`service-card overflow-hidden transition-all duration-300 hover-scale ${cardClassName}`}
             onMouseEnter={() => setHoveredProduct(product.id)}
             onMouseLeave={() => setHoveredProduct(null)}
           >
@@ -33,7 +45,7 @@ const ProductGrid = ({ products, addToCart, t }: ProductGridProps) => {
               <img 
                 src={product.image} 
                 alt={product.name} 
-                className="object-cover w-full h-full transition-transform duration-500 transform-gpu hover:scale-105"
+                className={`object-cover w-full h-full transition-transform duration-500 transform-gpu hover:scale-105 ${imageClassName}`}
               />
               {product.isNew && (
                 <Badge className="absolute top-3 left-3 bg-primary text-white">
@@ -57,7 +69,7 @@ const ProductGrid = ({ products, addToCart, t }: ProductGridProps) => {
               </div>
             </CardHeader>
             
-            <CardContent>
+            <CardContent className={contentClassName}>
               <p className="text-muted-foreground text-sm mb-4">{product.description}</p>
               <div className="flex items-center justify-between">
                 {product.discountedPrice ? (
@@ -73,7 +85,7 @@ const ProductGrid = ({ products, addToCart, t }: ProductGridProps) => {
 
             <CardFooter>
               <Button 
-                className="w-full group" 
+                className={`w-full group ${buttonClassName}`} 
                 onClick={() => addToCart(product)}
               >
                 <ShoppingCart className="mr-2 h-4 w-4 group-hover:animate-bounce" />
