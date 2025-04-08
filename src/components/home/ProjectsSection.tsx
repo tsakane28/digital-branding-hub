@@ -71,11 +71,11 @@ const ProjectsSection = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-8">
           {recentProjects.map((project, index) => (
             <div 
               key={project.id + index}
-              className="group overflow-hidden rounded-3xl"
+              className="group overflow-hidden rounded-2xl"
             >
               <div className="relative aspect-[4/3] overflow-hidden">
                 <img 
@@ -86,7 +86,7 @@ const ProjectsSection = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6">
                   <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform">
                     <div className="text-white/80 text-sm mb-1">{project.type}</div>
-                    <h3 className="text-xl font-semibold text-white mb-1">{project.title}</h3>
+                    <h3 className="text-xl font-medium text-white mb-1">{project.title}</h3>
                     <p className="text-white/90">{project.client}</p>
                   </div>
                 </div>

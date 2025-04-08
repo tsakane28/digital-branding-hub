@@ -102,14 +102,14 @@ const Layout = () => {
   return (
     <>
       <Meta 
-        title={currentMeta.title} 
-        description={currentMeta.description} 
+        title={currentMeta?.title || defaultMeta.title} 
+        description={currentMeta?.description || defaultMeta.description} 
         ogUrl={`https://reserveddigitalbranding.com${location.pathname}`}
       />
       
       <div className="flex flex-col min-h-screen relative bg-white dark:bg-black">
         <Navbar />
-        <main className={`flex-grow transition-opacity duration-500 ${isPageLoaded ? 'opacity-100' : 'opacity-0'} relative z-10`}>
+        <main className={`flex-grow transition-opacity duration-700 ${isPageLoaded ? 'opacity-100' : 'opacity-0'} relative z-10`}>
           <Outlet />
           
           {showCTA && <CallToAction className="mt-16 md:mt-24" />}

@@ -66,7 +66,7 @@ const services: Service[] = [
 
 const ServicesSection = () => {
   return (
-    <section className="py-24 bg-white dark:bg-black">
+    <section className="py-24 bg-gray-50 dark:bg-gray-900">
       <div className="container px-6 mx-auto">
         <div className="max-w-3xl mx-auto text-center mb-16">
           <h3 className="text-sm font-semibold text-gray-500 dark:text-gray-400 tracking-wide uppercase mb-4">
@@ -80,15 +80,15 @@ const ServicesSection = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {services.map((service, index) => (
             <div 
               key={service.id}
-              className="bg-gray-100 dark:bg-gray-900 rounded-3xl p-8 transition-all duration-300 hover:shadow-lg"
+              className="bg-white dark:bg-black rounded-2xl p-8 transition-all duration-300 hover:shadow-lg"
             >
               <div className="flex flex-col h-full">
                 {service.icon}
-                <h3 className="text-2xl font-semibold mt-6 mb-3">{service.name}</h3>
+                <h3 className="text-2xl font-medium mt-6 mb-3">{service.name}</h3>
                 <p className="text-gray-600 dark:text-gray-400 mb-6 text-lg">{service.description}</p>
                 <Link 
                   to={`/services#${service.id}`}

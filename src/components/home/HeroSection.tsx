@@ -4,16 +4,16 @@ import { Button } from "@/components/ui/button";
 
 const HeroSection = () => {
   return (
-    <section className="pt-20 pb-0 overflow-hidden bg-white dark:bg-black">
+    <section className="py-32 overflow-hidden bg-white dark:bg-black">
       <div className="container px-6 mx-auto">
-        <div className="text-center mb-12">
+        <div className="text-center mb-16">
           <h2 className="text-sm font-semibold text-gray-500 dark:text-gray-400 tracking-wide uppercase mb-5">
             Your Digital Branding Agency
           </h2>
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight mb-6 max-w-5xl mx-auto">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight mb-6 max-w-4xl mx-auto">
             We Are Your Digital Branding Agency & Marketing Partner
           </h1>
-          <p className="text-xl md:text-2xl text-gray-500 dark:text-gray-400 mb-8 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-500 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
             Reserved Digital Branding helps businesses create memorable brand experiences
             through strategic design, digital marketing, and creative solutions.
           </p>
@@ -49,7 +49,7 @@ const HeroSection = () => {
 
         <div className="relative h-[600px] w-full overflow-hidden rounded-3xl">
           <img 
-            src="/branding.jpg" 
+            src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2426&q=80" 
             alt="Digital Branding" 
             className="w-full h-full object-cover"
           />

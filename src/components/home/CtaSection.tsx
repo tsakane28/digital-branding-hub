@@ -4,10 +4,10 @@ import { Button } from "@/components/ui/button";
 
 const CtaSection = () => {
   return (
-    <section className="py-32 bg-white dark:bg-black text-center">
+    <section className="py-32 bg-gray-50 dark:bg-gray-900 text-center">
       <div className="container px-6 mx-auto">
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium mb-5 tracking-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold mb-5 tracking-tight">
             Ready to elevate your brand?
           </h2>
           <p className="text-xl md:text-2xl text-gray-500 dark:text-gray-400 mb-10">

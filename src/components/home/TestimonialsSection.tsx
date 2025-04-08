@@ -35,7 +35,7 @@ const testimonials: Testimonial[] = [
 
 const TestimonialsSection = () => {
   return (
-    <section className="py-24 bg-gray-100 dark:bg-gray-900">
+    <section className="py-24 bg-white dark:bg-black">
       <div className="container px-6 mx-auto">
         <div className="max-w-3xl mx-auto text-center mb-16">
           <h3 className="text-sm font-semibold text-gray-500 dark:text-gray-400 tracking-wide uppercase mb-4">
@@ -53,7 +53,7 @@ const TestimonialsSection = () => {
           {testimonials.map((testimonial, index) => (
             <div 
               key={testimonial.id} 
-              className="bg-white dark:bg-black rounded-3xl p-8 shadow-sm"
+              className="bg-gray-50 dark:bg-gray-900 rounded-3xl p-8 transition-all duration-300 hover:shadow-md"
             >
               <div className="flex mb-3">
                 {[...Array(testimonial.rating)].map((_, i) => (
