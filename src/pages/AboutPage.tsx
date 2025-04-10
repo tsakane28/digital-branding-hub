@@ -15,52 +15,52 @@ interface TeamMember {
 const teamMembers: TeamMember[] = [
   {
     id: "1",
-    name: "Edgar Simbarashe Mazorodze ",
+    name: "Alex Moyo",
     role: "Founder & Creative Director",
-    bio: "With over 10 years of experience in branding and design, Edgar brings creative vision and strategic insight to every project.",
-    image: "/public/simba.jpg"
+    bio: "With over 15 years of experience in branding and design, Alex brings creative vision and strategic insight to every project.",
+    image: "https://images.unsplash.com/photo-1531891570158-e71b35a485bc?q=80&w=1064&auto=format&fit=crop&ixlib=rb-4.0.3"
   },
   {
     id: "2",
-    name: "Andrew Huje ",
+    name: "Tendai Manyika",
     role: "Lead Graphic Designer",
-    bio: "Andrew combines technical expertise with an artistic eye to create stunning visual assets that capture brand essence.",
-    image: "/public/andrew.jpg"
+    bio: "Tendai combines technical expertise with an artistic eye to create stunning visual assets that capture brand essence.",
+    image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.0.3"
   },
   {
     id: "3",
-    name: "Tsakane Shiri",
+    name: "Farai Ndoro",
     role: "Web Development Lead",
-    bio: "Tsakane specializes in creating beautiful, functional websites that deliver exceptional user experiences.",
-    image: "/public/munashe.jpg"
+    bio: "Farai specializes in creating beautiful, functional websites that deliver exceptional user experiences.",
+    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.0.3"
   },
-  // {
-  //   id: "4",
-  //   name: "Chido Marondera",
-  //   role: "Marketing Specialist",
-  //   bio: "Chido crafts effective marketing strategies that help brands connect with their target audiences and drive results.",
-  //   image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.0.3"
-  // }
+  {
+    id: "4",
+    name: "Chido Marondera",
+    role: "Marketing Specialist",
+    bio: "Chido crafts effective marketing strategies that help brands connect with their target audiences and drive results.",
+    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.0.3"
+  }
 ];
 
 const values = [
   {
-    icon: <Target className="h-6 w-6 text-[#0070c9]" />,
+    icon: <Target className="h-6 w-6 text-primary" />,
     title: "Strategic Thinking",
     description: "We approach every project with careful planning and strategic insight to achieve optimal results."
   },
   {
-    icon: <Users className="h-6 w-6 text-[#0070c9]" />,
+    icon: <Users className="h-6 w-6 text-primary" />,
     title: "Client Partnership",
     description: "We view our clients as partners and collaborate closely to bring their vision to life."
   },
   {
-    icon: <Award className="h-6 w-6 text-[#0070c9]" />,
+    icon: <Award className="h-6 w-6 text-primary" />,
     title: "Excellence",
     description: "We hold ourselves to the highest standards of quality in everything we do."
   },
   {
-    icon: <Briefcase className="h-6 w-6 text-[#0070c9]" />,
+    icon: <Briefcase className="h-6 w-6 text-primary" />,
     title: "Integrity",
     description: "We operate with transparency, honesty, and ethical business practices."
   }
@@ -101,7 +101,6 @@ const milestones = [
 
 const AboutPage = () => {
   const [isImagesLoaded, setIsImagesLoaded] = useState(false);
-  const [activeSection, setActiveSection] = useState<string | null>(null);
 
   useEffect(() => {
     // Simulate image loading
@@ -113,58 +112,78 @@ const AboutPage = () => {
   }, []);
 
   return (
-    <div className="flex flex-col w-full bg-white dark:bg-black">
-      {/* Hero Section - Apple-style with large typography */}
-      <section className="pt-32 pb-16 md:pt-40 md:pb-24 relative overflow-hidden">
-        <div className="container px-6 mx-auto max-w-6xl">
-          <div className="max-w-4xl mx-auto">
-            <h1 className="text-5xl md:text-7xl font-semibold tracking-tight mb-8 text-center">
-              About Reserved Digital Branding
+    <div className="flex flex-col w-full">
+      {/* Hero Section */}
+      <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-secondary">
+        <div className="absolute inset-0 -z-10 overflow-hidden">
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/5 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 -left-40 w-80 h-80 bg-primary/5 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="container px-6 mx-auto">
+          <div className="max-w-3xl mx-auto text-center">
+            <div className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-primary/10 text-primary mb-6">
+              <span>About Us</span>
+            </div>
+            <h1 className="text-4xl sm:text-5xl font-display font-bold tracking-tight mb-6 animate-fade-up">
+              We are Reserved Digital Branding
             </h1>
-            <p className="text-xl md:text-2xl text-gray-500 dark:text-gray-400 text-center leading-relaxed mb-12 max-w-3xl mx-auto">
+            <p className="text-lg text-muted-foreground animate-fade-up" style={{ animationDelay: "100ms" }}>
               A passionate team of creative professionals dedicated to helping brands stand out in the digital landscape.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Story Section - Clean, image-focused layout */}
-      <section className="py-24 bg-gray-50 dark:bg-neutral-900">
-        <div className="container px-6 mx-auto max-w-6xl">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
-            <div className="relative">
-              <img 
-                src="https://images.unsplash.com/photo-1565106430482-8f6e74349ca1?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3" 
-                alt="Our team working together" 
-                className="w-full h-[500px] object-cover rounded-2xl shadow-lg"
-              />
+      {/* Story Section */}
+      <section className="py-20 bg-white">
+        <div className="container px-6 mx-auto">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className={`relative animate-fade-right transition-opacity duration-1000 ${isImagesLoaded ? 'opacity-100' : 'opacity-0'}`}>
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-xl">
+                <img 
+                  src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=2670&ixlib=rb-4.0.3" 
+                  alt="Our team working together" 
+                  className={`object-cover w-full h-full pixelated-load ${isImagesLoaded ? 'loaded' : ''}`}
+                />
+              </div>
+              <div className="absolute -bottom-6 -left-6 glass-card px-6 py-4">
+                <p className="text-lg font-medium">Established 2018</p>
+              </div>
             </div>
 
-            <div className="space-y-6">
-              <h5 className="text-[#0070c9] font-medium mb-2">Our Story</h5>
-              <h2 className="text-3xl md:text-4xl font-semibold mb-6">
+            <div className="space-y-6 animate-fade-left">
+              <div className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-primary/10 text-primary">
+                <span>Our Story</span>
+              </div>
+              <h2 className="text-3xl md:text-4xl font-display font-bold">
                 A Journey of Creative Excellence
               </h2>
-              <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
+              <p className="text-muted-foreground">
                 Reserved Digital Branding was founded in 2018 with a vision to create a digital branding agency that combines strategic thinking with creative excellence. What started as a small team with big dreams has grown into a comprehensive branding and marketing agency serving clients across various industries.
               </p>
-              <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
+              <p className="text-muted-foreground">
                 Our journey has been defined by our commitment to helping businesses build strong, memorable brands that resonate with their audiences. We understand that in today's digital world, a compelling brand presence is essential for success, and we take pride in being the partner that helps businesses achieve this.
+              </p>
+              <p className="text-muted-foreground">
+                Over the years, we've expanded our services to provide comprehensive branding solutions that address every aspect of a brand's presence, from visual identity to digital marketing strategies.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Values Section - Grid layout with subtle cards */}
-      <section className="py-24 bg-white dark:bg-black">
-        <div className="container px-6 mx-auto max-w-6xl">
+      {/* Values Section */}
+      <section className="py-20 bg-secondary">
+        <div className="container px-6 mx-auto">
           <div className="max-w-3xl mx-auto text-center mb-16">
-            <h5 className="text-[#0070c9] font-medium mb-4">Our Values</h5>
-            <h2 className="text-3xl md:text-5xl font-semibold mb-8">
+            <div className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-primary/10 text-primary mb-4">
+              <span>Our Values</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
               The Principles That Guide Us
             </h2>
-            <p className="text-xl text-gray-500 dark:text-gray-400">
+            <p className="text-lg text-muted-foreground">
               Our core values shape our approach to work and our relationships with clients.
             </p>
           </div>
@@ -173,111 +192,130 @@ const AboutPage = () => {
             {values.map((value, index) => (
               <div 
                 key={index} 
-                className="px-8 py-10 bg-gray-50 dark:bg-neutral-900 rounded-3xl transition-all"
+                className="bg-white p-6 rounded-xl border border-border animate-fade-up"
+                style={{ animationDelay: `${index * 100}ms` }}
               >
-                <div className="mb-6">
+                <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
                   {value.icon}
                 </div>
-                <h3 className="text-xl font-semibold mb-4">{value.title}</h3>
-                <p className="text-gray-600 dark:text-gray-300">{value.description}</p>
+                <h3 className="text-xl font-medium mb-3">{value.title}</h3>
+                <p className="text-muted-foreground">{value.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Team Section - Large, premium image display */}
-      <section className="py-24 bg-gray-50 dark:bg-neutral-900">
-        <div className="container px-6 mx-auto max-w-6xl">
+      {/* Team Section */}
+      <section className="py-20 bg-white">
+        <div className="container px-6 mx-auto">
           <div className="max-w-3xl mx-auto text-center mb-16">
-            <h5 className="text-[#0070c9] font-medium mb-4">Our Team</h5>
-            <h2 className="text-3xl md:text-5xl font-semibold mb-8">
+            <div className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-primary/10 text-primary mb-4">
+              <span>Our Team</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
               Meet the Creative Minds
             </h2>
-            <p className="text-xl text-gray-500 dark:text-gray-400">
+            <p className="text-lg text-muted-foreground">
               Our talented team of professionals is passionate about creating exceptional brand experiences.
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-12">
-            {teamMembers.map((member) => (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {teamMembers.map((member, index) => (
               <div 
                 key={member.id} 
-                className="group"
+                className="bg-white rounded-xl overflow-hidden border border-border shadow-sm hover:shadow-md transition-shadow animate-fade-up"
+                style={{ animationDelay: `${index * 100}ms` }}
               >
-                <div className="aspect-[3/4] relative overflow-hidden rounded-2xl mb-6">
+                <div className="aspect-[3/4] relative overflow-hidden">
                   <img 
                     src={member.image} 
                     alt={member.name} 
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    className={`object-cover w-full h-full pixelated-load ${isImagesLoaded ? 'loaded' : ''}`}
                   />
                 </div>
-                <h3 className="text-2xl font-semibold mb-1">{member.name}</h3>
-                <p className="text-[#0070c9] font-medium mb-3">{member.role}</p>
-                <p className="text-gray-600 dark:text-gray-300">{member.bio}</p>
+                <div className="p-6">
+                  <h3 className="text-xl font-medium mb-1">{member.name}</h3>
+                  <p className="text-primary font-medium mb-3">{member.role}</p>
+                  <p className="text-muted-foreground">{member.bio}</p>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Timeline/Milestones - Clean, horizontal timeline */}
-      <section className="py-24 bg-white dark:bg-black">
-        <div className="container px-6 mx-auto max-w-6xl">
+      {/* Timeline/Milestones */}
+      <section className="py-20 bg-secondary relative overflow-hidden">
+        <div className="absolute inset-0 -z-10 overflow-hidden">
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/5 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 -left-40 w-80 h-80 bg-primary/5 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="container px-6 mx-auto">
           <div className="max-w-3xl mx-auto text-center mb-16">
-            <h5 className="text-[#0070c9] font-medium mb-4">Our Journey</h5>
-            <h2 className="text-3xl md:text-5xl font-semibold mb-8">
+            <div className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-primary/10 text-primary mb-4">
+              <span>Our Journey</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
               Key Milestones
             </h2>
-            <p className="text-xl text-gray-500 dark:text-gray-400">
+            <p className="text-lg text-muted-foreground">
               Tracing our path from humble beginnings to where we are today.
             </p>
           </div>
 
-          <div className="space-y-12">
-            {milestones.map((milestone, index) => (
-              <div 
-                key={index} 
-                className="grid md:grid-cols-[200px_1fr] gap-8 items-start"
-              >
-                <div className="text-[#0070c9] text-2xl font-semibold">{milestone.year}</div>
-                <div>
-                  <h3 className="text-2xl font-semibold mb-3">{milestone.title}</h3>
-                  <p className="text-gray-600 dark:text-gray-300 text-lg">{milestone.description}</p>
+          <div className="relative max-w-4xl mx-auto">
+            {/* Timeline line */}
+            <div className="absolute left-4 lg:left-1/2 transform lg:-translate-x-1/2 top-0 bottom-0 w-0.5 bg-border"></div>
+            
+            <div className="space-y-16">
+              {milestones.map((milestone, index) => (
+                <div 
+                  key={index} 
+                  className={`relative flex flex-col lg:flex-row ${index % 2 === 0 ? 'lg:flex-row-reverse' : ''} items-start gap-8 animate-fade-up`}
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
+                  <div className="lg:w-1/2 flex lg:justify-end">
+                    <div className={`bg-white p-6 rounded-xl border border-border shadow-sm w-full relative ${index % 2 === 0 ? 'lg:text-right' : ''}`}>
+                      <div className="absolute top-6 lg:top-1/2 -left-4 lg:left-auto lg:-right-10 lg:transform lg:-translate-y-1/2 h-8 w-8 rounded-full bg-primary flex items-center justify-center text-white">
+                        {index + 1}
+                      </div>
+                      <span className="text-primary font-medium">{milestone.year}</span>
+                      <h3 className="text-xl font-medium mb-2">{milestone.title}</h3>
+                      <p className="text-muted-foreground">{milestone.description}</p>
+                    </div>
+                  </div>
+                  <div className="lg:w-1/2 hidden lg:block"></div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* CTA Section - Full-width, Apple-style gradient */}
-      <section className="py-24 bg-gradient-to-b from-[#0070c9] to-[#134e7c] text-white">
-        <div className="container px-6 mx-auto max-w-4xl text-center">
-          <h2 className="text-3xl md:text-5xl font-semibold mb-8">
-            Ready to Create Something Amazing Together?
-          </h2>
-          <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
-            Let's collaborate to bring your brand vision to life with our creative expertise.
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-6">
-            <Button 
-              size="lg" 
-              className="bg-white text-[#0070c9] hover:bg-white/90 rounded-full py-6 px-8 text-lg font-medium" 
-              asChild
-            >
-              <Link to="/services">Our Services</Link>
-            </Button>
-            <Button 
-              size="lg" 
-              className="bg-transparent text-white hover:bg-white/10 border border-white rounded-full py-6 px-8 text-lg font-medium"
-              asChild
-            >
-              <Link to="/contact">
-                Contact Us
-                <ArrowRight size={18} className="ml-2" />
-              </Link>
-            </Button>
+      {/* CTA Section */}
+      <section className="py-20 bg-primary text-white">
+        <div className="container px-6 mx-auto">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 animate-fade-up">
+              Ready to Create Something Amazing Together?
+            </h2>
+            <p className="text-lg text-white/80 mb-8 animate-fade-up" style={{ animationDelay: "100ms" }}>
+              Let's collaborate to bring your brand vision to life with our creative expertise.
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center gap-4 animate-fade-up" style={{ animationDelay: "200ms" }}>
+              <Button size="lg" variant="secondary" asChild>
+                <Link to="/services">Our Services</Link>
+              </Button>
+              <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10" asChild>
+                <Link to="/contact">
+                  Contact Us
+                  <ArrowRight size={16} className="ml-2" />
+                </Link>
+              </Button>
+            </div>
           </div>
         </div>
       </section>

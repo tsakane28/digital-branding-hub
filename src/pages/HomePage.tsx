@@ -1,116 +1,363 @@
 
 import { useEffect, useState } from "react";
-import HeroSection from "@/components/home/HeroSection";
-import ServicesSection from "@/components/home/ServicesSection";
-import ProjectsSection from "@/components/home/ProjectsSection";
-import FeaturesSection from "@/components/home/FeaturesSection";
-import TestimonialsSection from "@/components/home/TestimonialsSection";
-import CtaSection from "@/components/home/CtaSection";
-import VideoSection from "@/components/home/VideoSection";
-import { Slide, Scale } from "@/components/ui/transitions";
-import ParallaxBackground from "@/components/ParallaxBackground";
-import ModernCarousel from "@/components/ui/modern-carousel";
+import { Link } from "react-router-dom";
+import { ArrowRight, CheckCircle2, Star } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+
+interface Service {
+  id: string;
+  name: string;
+  description: string;
+  icon: JSX.Element;
+}
+
+const services: Service[] = [
+  {
+    id: "branding",
+    name: "Branding",
+    description: "Create a distinctive brand identity that resonates with your audience and sets you apart from competitors.",
+    icon: <div className="h-12 w-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
+        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+        <circle cx="12" cy="10" r="3"></circle>
+      </svg>
+    </div>
+  },
+  {
+    id: "graphic-design",
+    name: "Graphic Design",
+    description: "Eye-catching visuals and graphic elements that communicate your brand message effectively.",
+    icon: <div className="h-12 w-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
+        <path d="M12 3v12"></path>
+        <path d="m8 11 4 4 4-4"></path>
+        <path d="M8 5a2 2 0 1 0 4 0 2 2 0 1 0-4 0"></path>
+        <path d="M2 19h20"></path>
+      </svg>
+    </div>
+  },
+  {
+    id: "web-design",
+    name: "Web Design",
+    description: "Beautiful, responsive websites that provide excellent user experience and drive conversions.",
+    icon: <div className="h-12 w-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
+        <rect width="20" height="14" x="2" y="3" rx="2"></rect>
+        <line x1="8" x2="16" y1="21" y2="21"></line>
+        <line x1="12" x2="12" y1="17" y2="21"></line>
+      </svg>
+    </div>
+  },
+  {
+    id: "photography",
+    name: "Photography",
+    description: "Professional photography that captures your brand essence and appeals to your target audience.",
+    icon: <div className="h-12 w-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
+        <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path>
+        <circle cx="12" cy="13" r="3"></circle>
+      </svg>
+    </div>
+  },
+];
+
+const testimonials = [
+  {
+    id: "1",
+    name: "Sarah Johnson",
+    role: "Marketing Director, Dial-A-Gift",
+    content: "Reserved Digital Branding transformed our online presence. Their attention to detail and creative approach helped us connect with our audience in ways we never imagined.",
+    rating: 5,
+  },
+  {
+    id: "2",
+    name: "David Moyo",
+    role: "CEO, Blue Water Fisheries",
+    content: "The team at Reserved Digital Branding are absolute professionals. Their branding strategy and design execution exceeded our expectations and delivered real business results.",
+    rating: 5,
+  },
+  {
+    id: "3",
+    name: "Tendai Sithole",
+    role: "Founder, Sithole Legal Counsel",
+    content: "Working with Reserved Digital Branding has been a game-changer for our firm. Their comprehensive approach to our brand identity has positioned us as leaders in our field.",
+    rating: 5,
+  },
+];
+
+const features = [
+  "Professional brand strategy",
+  "Custom design solutions",
+  "Responsive web development",
+  "Photography and videography",
+  "Social media management",
+  "Marketing campaigns",
+  "Print and digital media",
+  "Vehicle branding",
+];
 
 const HomePage = () => {
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isImagesLoaded, setIsImagesLoaded] = useState(false);
 
   useEffect(() => {
-    // Set loaded after initial render
-    setIsLoaded(true);
+    // Simulate image loading
+    const timer = setTimeout(() => {
+      setIsImagesLoaded(true);
+    }, 300);
+
+    return () => clearTimeout(timer);
   }, []);
 
-  const carouselSlides = [
-    {
-      image: "https://images.unsplash.com/photo-1542744173-8659d8bde375?q=80&w=2802&auto=format&fit=crop",
-      title: "Strategic Design Solutions",
-      description: "Creating compelling brand identities for businesses across industries"
-    },
-    {
-      image: "https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=2070&auto=format&fit=crop",
-      title: "Creative Excellence",
-      description: "Award-winning design team solving complex branding challenges"
-    },
-    {
-      image: "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?q=80&w=2070&auto=format&fit=crop",
-      title: "Digital Transformation",
-      description: "Helping brands succeed in the evolving digital landscape"
-    }
-  ];
-
   return (
-    <div className={`flex flex-col w-full transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'} bg-white dark:bg-black`}>
-      <HeroSection />
-      
-      {/* Carousel Section */}
-      <section className="py-16 px-6 bg-white dark:bg-black">
-        <div className="max-w-6xl mx-auto">
-          <Scale>
-            <ModernCarousel 
-              className="h-[600px] rounded-3xl overflow-hidden"
-              interval={6000}
-            >
-              {carouselSlides.map((slide, index) => (
-                <div key={index} className="relative h-full w-full">
-                  <img 
-                    src={slide.image}
-                    alt={slide.title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex flex-col justify-end p-12">
-                    <h3 className="text-3xl font-semibold text-white mb-3">{slide.title}</h3>
-                    <p className="text-xl text-white/80">{slide.description}</p>
+    <div className="flex flex-col w-full">
+      {/* Hero Section */}
+      <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
+        <div className="absolute inset-0 bg-secondary -z-10 overflow-hidden">
+          <div className="absolute w-full h-full bg-gradient-to-br from-primary/5 to-secondary/50"></div>
+          <div className={`absolute inset-0 transition-opacity duration-1000 ${isImagesLoaded ? 'opacity-100' : 'opacity-0'}`}>
+            <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/10 rounded-full blur-3xl"></div>
+            <div className="absolute top-1/4 -left-40 w-80 h-80 bg-primary/10 rounded-full blur-3xl"></div>
+          </div>
+        </div>
+
+        <div className="container px-6 mx-auto">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="max-w-xl space-y-8 animate-fade-right">
+              <div>
+                <div className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-primary/10 text-primary mb-6">
+                  <span>Your Digital Branding Agency</span>
+                </div>
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold tracking-tight mb-6 leading-tight">
+                  We Are Your Digital Branding Agency & Marketing Partner
+                </h1>
+                <p className="text-lg text-muted-foreground">
+                  Reserved Digital Branding helps businesses create memorable brand experiences
+                  through strategic design, digital marketing, and creative solutions.
+                </p>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button size="lg" asChild>
+                  <Link to="/services">Our Services</Link>
+                </Button>
+                <Button variant="outline" size="lg" asChild>
+                  <Link to="/contact">
+                    Contact Us
+                    <ArrowRight size={16} className="ml-2" />
+                  </Link>
+                </Button>
+              </div>
+              <div className="pt-2">
+                <p className="text-sm text-muted-foreground mb-3">Trusted by organizations like:</p>
+                <div className="flex flex-wrap gap-6">
+                  <span className="text-muted-foreground/70 font-medium">Dial-A-Gift</span>
+                  <span className="text-muted-foreground/70 font-medium">The Face Dresser</span>
+                  <span className="text-muted-foreground/70 font-medium">Sithole Legal</span>
+                </div>
+              </div>
+            </div>
+
+            <div className={`relative animate-fade-left transition-opacity duration-1000 ${isImagesLoaded ? 'opacity-100' : 'opacity-0'}`}>
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent z-10"></div>
+                <img 
+                  src="https://images.unsplash.com/photo-1596079890744-c1a0462d0975?auto=format&fit=crop&q=80&w=2671&ixlib=rb-4.0.3" 
+                  alt="Digital Branding" 
+                  className={`object-cover w-full h-full pixelated-load ${isImagesLoaded ? 'loaded' : ''}`}
+                />
+              </div>
+              <div className="absolute -bottom-6 -left-6 glass-card px-6 py-4 z-20 animate-fade-up">
+                <div className="flex items-center space-x-4">
+                  <div className="p-2 rounded-full bg-primary/10">
+                    <CheckCircle2 className="h-6 w-6 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-medium">Premium Quality</h3>
+                    <p className="text-sm text-muted-foreground">Award-winning designs</p>
                   </div>
                 </div>
-              ))}
-            </ModernCarousel>
-          </Scale>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
-      
-      {/* Full-width Product Image Section (Apple style) */}
-      <ParallaxBackground
-        imageUrl="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2400&q=80"
-        speed={0.1}
-        gradientOpacity={0.7}
-        className="py-24"
-      >
-        <div className="max-w-6xl mx-auto text-center px-6 relative z-10">
-          <Slide direction="up">
-            <h2 className="text-4xl md:text-5xl font-semibold mb-6 text-white">Craft Your Brand Story</h2>
-            <p className="text-xl md:text-2xl text-gray-200 mb-12 max-w-3xl mx-auto">
-              We transform ideas into impressive visual identities that resonate with your audience
+
+      {/* Services Section */}
+      <section className="py-20 bg-white">
+        <div className="container px-6 mx-auto">
+          <div className="max-w-xl mx-auto text-center mb-16">
+            <div className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-primary/10 text-primary mb-4">
+              <span>Our Core Services</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
+              Comprehensive Digital Branding Solutions
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              We offer a full range of services to help your brand stand out in the digital landscape.
             </p>
-          </Slide>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {services.map((service, index) => (
+              <div 
+                key={service.id}
+                className="service-card p-6 animate-fade-up"
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                {service.icon}
+                <h3 className="text-xl font-medium mt-6 mb-3">{service.name}</h3>
+                <p className="text-muted-foreground mb-6">{service.description}</p>
+                <Link 
+                  to={`/services#${service.id}`}
+                  className="inline-flex items-center text-primary hover:text-primary/80 transition-colors"
+                >
+                  Learn more <ArrowRight size={16} className="ml-2" />
+                </Link>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <Button asChild size="lg">
+              <Link to="/services">View All Services</Link>
+            </Button>
+          </div>
         </div>
-      </ParallaxBackground>
-      
-      <ServicesSection />
-      <VideoSection />
-      
-      {/* Apple-style Product Display Section */}
-      <section className="py-24 px-6 bg-gray-50 dark:bg-gray-900 overflow-hidden">
-        <div className="max-w-6xl mx-auto text-center">
-          <Slide direction="up">
-            <h2 className="text-4xl md:text-5xl font-semibold mb-6">Elevate Your Presence</h2>
-            <p className="text-xl md:text-2xl text-gray-500 dark:text-gray-400 mb-12 max-w-3xl mx-auto">
-              Strategic branding and marketing solutions for businesses ready to stand out
-            </p>
-          </Slide>
-        </div>
-        
-        <Scale delay={0.3} className="mt-12 relative mx-auto overflow-hidden rounded-3xl">
-          <img 
-            src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2400&q=80" 
-            alt="Branding Showcase"
-            className="w-full h-full object-cover"
-          />
-        </Scale>
       </section>
-      
-      <ProjectsSection />
-      <FeaturesSection />
-      <TestimonialsSection />
-      <CtaSection />
+
+      {/* Features Section */}
+      <section className="py-20 bg-secondary relative overflow-hidden">
+        <div className="absolute inset-0 -z-10 overflow-hidden">
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/5 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 -left-40 w-80 h-80 bg-primary/5 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="container px-6 mx-auto">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <div className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-primary/10 text-primary mb-4">
+                <span>Why Choose Us</span>
+              </div>
+              <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
+                Elevate Your Brand with Our Expertise
+              </h2>
+              <p className="text-lg text-muted-foreground mb-8">
+                We blend creativity with strategic thinking to deliver branding solutions that make a lasting impression.
+              </p>
+
+              <div className="grid sm:grid-cols-2 gap-4">
+                {features.map((feature, i) => (
+                  <div 
+                    key={i} 
+                    className="flex items-center space-x-3 animate-fade-right"
+                    style={{ animationDelay: `${i * 100}ms` }}
+                  >
+                    <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0" />
+                    <span>{feature}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-10">
+                <Button asChild size="lg">
+                  <Link to="/about">More About Us</Link>
+                </Button>
+              </div>
+            </div>
+
+            <div className="relative animate-fade-left">
+              <div className="relative aspect-square rounded-2xl overflow-hidden shadow-2xl">
+                <img 
+                  src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&q=80&w=2670&ixlib=rb-4.0.3" 
+                  alt="Creative team working" 
+                  className={`object-cover w-full h-full pixelated-load ${isImagesLoaded ? 'loaded' : ''}`}
+                />
+              </div>
+              <div className="absolute -bottom-6 -right-6 glass-card p-4">
+                <div className="flex items-center space-x-2">
+                  <div className="flex">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <Star key={star} className="h-5 w-5 text-yellow-500 fill-yellow-500" />
+                    ))}
+                  </div>
+                  <span className="font-medium">5.0 (120+ reviews)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="py-20 bg-white">
+        <div className="container px-6 mx-auto">
+          <div className="max-w-xl mx-auto text-center mb-16">
+            <div className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-primary/10 text-primary mb-4">
+              <span>What Clients Say</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
+              Client Testimonials
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              Don't just take our word for it. Here's what our clients have to say about working with us.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <div 
+                key={testimonial.id} 
+                className={cn(
+                  "relative bg-white border border-border rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow animate-fade-up",
+                  index === 1 ? "md:translate-y-6" : ""
+                )}
+                style={{ animationDelay: `${index * 200}ms` }}
+              >
+                <div className="flex mb-3">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <Star key={i} className="h-5 w-5 text-yellow-500 fill-yellow-500" />
+                  ))}
+                </div>
+                <p className="text-foreground/90 mb-6">"{testimonial.content}"</p>
+                <div className="flex items-center space-x-3">
+                  <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center text-primary font-medium">
+                    {testimonial.name.charAt(0)}
+                  </div>
+                  <div>
+                    <p className="font-medium">{testimonial.name}</p>
+                    <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-primary text-white">
+        <div className="container px-6 mx-auto">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 animate-fade-up">
+              Ready to Elevate Your Brand?
+            </h2>
+            <p className="text-lg text-white/80 mb-8 animate-fade-up" style={{ animationDelay: "100ms" }}>
+              Let's collaborate to create a compelling brand presence that resonates with your audience and drives growth.
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center gap-4 animate-fade-up" style={{ animationDelay: "200ms" }}>
+              <Button size="lg" variant="secondary" asChild>
+                <Link to="/services">Explore Services</Link>
+              </Button>
+              <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10" asChild>
+                <Link to="/contact">
+                  Get Started
+                  <ArrowRight size={16} className="ml-2" />
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };

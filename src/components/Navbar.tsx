@@ -4,17 +4,12 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import { Menu, X, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/context/CartContext";
-import LanguageSelector from "./LanguageSelector";
-import { useLanguage } from "@/context/LanguageContext";
-import { translations } from "@/translations";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
   const { cartItems } = useCart();
-  const { language } = useLanguage();
-  const t = translations[language].nav;
 
   const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
 
@@ -38,19 +33,18 @@ const Navbar = () => {
   }, [location.pathname]);
 
   const navLinks = [
-    { name: t.home, path: "/" },
-    { name: t.about, path: "/about" },
-    { name: t.services, path: "/services" },
-    { name: t.portfolio, path: "/portfolio" },
-    { name: t.shop, path: "/shop" },
-    { name: t.contact, path: "/contact" },
+    { name: "Home", path: "/" },
+    { name: "About", path: "/about" },
+    { name: "Services", path: "/services" },
+    { name: "Portfolio", path: "/portfolio" },
+    { name: "Contact", path: "/contact" },
   ];
 
   return (
     <header
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         isScrolled 
-          ? "bg-blue/90 backdrop-blur-md shadow-sm" 
+          ? "bg-white/90 backdrop-blur-md shadow-sm" 
           : "bg-transparent"
       }`}
     >
@@ -60,7 +54,7 @@ const Navbar = () => {
             to="/" 
             className="text-2xl font-display font-bold tracking-tight"
           >
-            <img src="/logo.png" alt="Reserved Digital Branding" className="h-10" />
+            Reserved<span className="text-primary">Digital</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -83,8 +77,7 @@ const Navbar = () => {
                 </li>
               ))}
             </ul>
-            <div className="flex items-center space-x-2">
-              <LanguageSelector />
+            <div className="flex items-center space-x-4">
               <Link to="/cart" className="relative">
                 <ShoppingCart 
                   size={22} 
@@ -97,14 +90,13 @@ const Navbar = () => {
                 )}
               </Link>
               <Button asChild>
-                <Link to="/contact">{translations[language].common.getQuote}</Link>
+                <Link to="/contact">Get Quote</Link>
               </Button>
             </div>
           </nav>
 
           {/* Mobile Menu Button */}
           <div className="flex items-center space-x-4 md:hidden">
-            <LanguageSelector />
             <Link to="/cart" className="relative">
               <ShoppingCart 
                 size={22} 
@@ -154,7 +146,7 @@ const Navbar = () => {
           </ul>
           <div className="mt-8 flex justify-center">
             <Button asChild size="lg" className="w-full max-w-xs">
-              <Link to="/contact">{translations[language].common.getQuote}</Link>
+              <Link to="/contact">Get Quote</Link>
             </Button>
           </div>
         </div>

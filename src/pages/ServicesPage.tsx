@@ -5,7 +5,6 @@ import { ArrowRight, Plus, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { useCart, Service } from "@/context/CartContext";
-import VideoBackground from "@/components/VideoBackground";
 
 const services: Service[] = [
   {
@@ -41,21 +40,21 @@ const services: Service[] = [
     name: "Video Production",
     price: 1800,
     description: "Professional video production services including concept development, filming, editing, and final delivery in multiple formats.",
-    image: "/public/video_production.jpg"
+    image: "https://images.unsplash.com/photo-1579165466741-7f35e4755183?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.0.3"
   },
   {
     id: "vehicle-branding",
     name: "Vehicle Branding",
     price: 950,
     description: "Professional vehicle branding service including design, production, and application of high-quality vehicle wraps and graphics.",
-    image: "/public/Motor-vehicle-branding.jpg"
+    image: "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3"
   },
   {
     id: "promotional-items",
     name: "Promotional Items",
     price: 750,
     description: "Custom branded promotional items including apparel, stationery, and merchandise with your logo and brand elements.",
-    image: "/public/hoodie.jpg"
+    image: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3"
   },
   {
     id: "social-media",
@@ -143,7 +142,6 @@ const ServicesPage = () => {
 
   const handleAddToCart = (service: Service) => {
     addToCart(service);
-    toast.success(`${service.name} added to cart`);
   };
 
   const formatPrice = (price: number) => {
@@ -155,49 +153,44 @@ const ServicesPage = () => {
   };
 
   return (
-    <div className="flex flex-col w-full bg-white dark:bg-black">
-      {/* Hero Section with video background */}
-      <section className="relative min-h-screen flex items-center">
-        <VideoBackground 
-          videoSrc="/video.mp4" 
-          overlayOpacity={0.5}
-          overlayColor="#000000"
-          posterImage="/graphic_design.jpg"
-        />
-        
-        <div className="container px-6 mx-auto relative z-10 py-32">
-          <div className="max-w-4xl mx-auto text-center text-white">
-            <h1 className="text-5xl md:text-7xl font-semibold tracking-tight mb-8">
+    <div className="flex flex-col w-full">
+      {/* Hero Section */}
+      <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-secondary">
+        <div className="absolute inset-0 -z-10 overflow-hidden">
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/5 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 -left-40 w-80 h-80 bg-primary/5 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="container px-6 mx-auto">
+          <div className="max-w-3xl mx-auto text-center">
+            <div className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-primary/10 text-primary mb-6">
+              <span>Our Services</span>
+            </div>
+            <h1 className="text-4xl sm:text-5xl font-display font-bold tracking-tight mb-6 animate-fade-up">
               Comprehensive Digital Branding Solutions
             </h1>
-            <p className="text-xl md:text-2xl text-white/80 leading-relaxed mb-12 max-w-3xl mx-auto">
+            <p className="text-lg text-muted-foreground animate-fade-up" style={{ animationDelay: "100ms" }}>
               Explore our range of services designed to elevate your brand presence and drive business growth.
             </p>
-            <Button 
-              className="bg-white text-[#0070c9] hover:bg-white/90 rounded-full py-6 px-8 text-lg font-medium"
-              asChild
-            >
-              <a href="#services">View Our Services</a>
-            </Button>
           </div>
         </div>
       </section>
 
-      {/* Services Navigation - Apple-style sticky tabs */}
-      <section id="services" className="sticky top-16 z-40 bg-white/90 dark:bg-black/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 shadow-sm">
-        <div className="container px-6 mx-auto max-w-6xl">
+      {/* Services Navigation */}
+      <section className="sticky top-16 z-40 bg-white border-b border-border shadow-sm">
+        <div className="container px-6 mx-auto">
           <div className="py-4 overflow-x-auto">
-            <div className="flex space-x-8 min-w-max justify-center">
+            <div className="flex space-x-6 min-w-max">
               {services.map((service) => (
                 <button
                   key={service.id}
-                  className={`text-base font-medium whitespace-nowrap pb-1 ${
+                  className={`text-sm font-medium whitespace-nowrap pb-1 ${
                     activeSection === service.id
-                      ? "text-[#0070c9] border-b-2 border-[#0070c9]"
-                      : "text-gray-600 dark:text-gray-300 hover:text-[#0070c9]"
+                      ? "text-primary border-b-2 border-primary"
+                      : "text-muted-foreground hover:text-foreground"
                   }`}
                   onClick={() => {
-                    serviceRefs.current[service.id]?.scrollIntoView({ behavior: "smooth", block: "start" });
+                    serviceRefs.current[service.id]?.scrollIntoView({ behavior: "smooth", block: "center" });
                     setActiveSection(service.id);
                   }}
                 >
@@ -209,63 +202,60 @@ const ServicesPage = () => {
         </div>
       </section>
 
-      {/* Individual Services with Image Backgrounds */}
-      <section className="py-24">
-        <div className="container px-6 mx-auto max-w-6xl">
+      {/* Individual Services */}
+      <section className="py-20 bg-white">
+        <div className="container px-6 mx-auto">
           <div className="max-w-3xl mx-auto text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-semibold mb-6">
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
               Our Service Offerings
             </h2>
-            <p className="text-xl text-gray-500 dark:text-gray-400">
+            <p className="text-lg text-muted-foreground">
               Browse our comprehensive range of branding and marketing services.
             </p>
           </div>
 
-          <div className="space-y-32">
-            {services.map((service) => (
+          <div className="space-y-20">
+            {services.map((service, index) => (
               <div 
                 key={service.id}
                 id={service.id}
                 ref={(el) => (serviceRefs.current[service.id] = el)}
-                className="grid md:grid-cols-2 gap-16 items-center"
+                className={`grid md:grid-cols-2 gap-12 items-center ${
+                  index % 2 === 0 ? "" : "md:flex-row-reverse"
+                }`}
               >
-                <div>
-                  <div className="relative aspect-square overflow-hidden rounded-3xl shadow-lg">
+                <div className={`order-1 ${index % 2 === 1 ? "md:order-2" : "md:order-1"}`}>
+                  <div className={`relative aspect-[4/3] rounded-2xl overflow-hidden shadow-xl animate-fade-right transition-opacity duration-1000 ${isImagesLoaded ? 'opacity-100' : 'opacity-0'}`}>
                     <img 
                       src={service.image} 
                       alt={service.name} 
-                      className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                      className={`object-cover w-full h-full pixelated-load ${isImagesLoaded ? 'loaded' : ''}`}
                     />
                   </div>
                 </div>
-                
-                <div className="space-y-6">
-                  <h5 className="text-[#0070c9] font-medium">Service</h5>
-                  <h2 className="text-3xl md:text-4xl font-semibold mb-4">
+
+                <div className={`space-y-6 animate-fade-left order-2 ${index % 2 === 1 ? "md:order-1" : "md:order-2"}`}>
+                  <div className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-primary/10 text-primary">
+                    <span>Service</span>
+                  </div>
+                  <h2 className="text-3xl font-display font-bold">
                     {service.name}
                   </h2>
-                  <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
+                  <p className="text-muted-foreground">
                     {service.description}
                   </p>
-                  <p className="text-3xl font-semibold mb-8">
+                  <p className="text-2xl font-display font-bold">
                     {formatPrice(service.price)}
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4">
-                    <Button 
-                      onClick={() => handleAddToCart(service)}
-                      className="bg-[#0070c9] hover:bg-[#0070c9]/90 text-white rounded-full py-6 px-8 text-lg font-medium"
-                    >
-                      <Plus size={18} className="mr-2" />
+                    <Button onClick={() => handleAddToCart(service)}>
+                      <Plus size={16} className="mr-2" />
                       Add to Cart
                     </Button>
-                    <Button 
-                      variant="outline" 
-                      className="border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 rounded-full py-6 px-8 text-lg font-medium hover:bg-gray-100 dark:hover:bg-gray-900"
-                      asChild
-                    >
+                    <Button variant="outline" asChild>
                       <Link to="/contact">
                         Request Info
-                        <ArrowRight size={18} className="ml-2" />
+                        <ArrowRight size={16} className="ml-2" />
                       </Link>
                     </Button>
                   </div>
@@ -277,14 +267,21 @@ const ServicesPage = () => {
       </section>
 
       {/* Packages Section */}
-      <section className="py-24 bg-gray-50 dark:bg-neutral-900">
-        <div className="container px-6 mx-auto max-w-6xl">
+      <section className="py-20 bg-secondary relative overflow-hidden">
+        <div className="absolute inset-0 -z-10 overflow-hidden">
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/5 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 -left-40 w-80 h-80 bg-primary/5 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="container px-6 mx-auto">
           <div className="max-w-3xl mx-auto text-center mb-16">
-            <h5 className="text-[#0070c9] font-medium mb-4">Value Packages</h5>
-            <h2 className="text-3xl md:text-5xl font-semibold mb-6">
+            <div className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-primary/10 text-primary mb-4">
+              <span>Value Packages</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
               Branding Packages
             </h2>
-            <p className="text-xl text-gray-500 dark:text-gray-400">
+            <p className="text-lg text-muted-foreground">
               Choose from our carefully curated packages for comprehensive branding solutions.
             </p>
           </div>
@@ -303,53 +300,47 @@ const ServicesPage = () => {
                 <div 
                   key={pkg.id} 
                   className={`
-                    relative rounded-3xl bg-white dark:bg-black shadow-sm transition-all duration-300 
-                    hover:shadow-lg p-8
-                    ${pkg.recommended ? 'ring-2 ring-[#0070c9]' : ''}
+                    relative rounded-xl border bg-white shadow-sm transition-all duration-300 
+                    hover:shadow-md animate-fade-up
+                    ${pkg.recommended ? 'border-primary ring-1 ring-primary' : 'border-border'}
                   `}
+                  style={{ animationDelay: `${index * 100}ms` }}
                 >
                   {pkg.recommended && (
                     <div className="absolute -top-3 inset-x-0 flex justify-center">
-                      <span className="px-4 py-1 text-sm font-medium text-white bg-[#0070c9] rounded-full">
+                      <span className="px-3 py-1 text-xs font-medium text-white bg-primary rounded-full">
                         Recommended
                       </span>
                     </div>
                   )}
 
-                  <div className="pt-6">
-                    <h3 className="text-2xl font-semibold mb-2">{pkg.name}</h3>
-                    <p className="text-gray-600 dark:text-gray-400 mb-4">{pkg.description}</p>
+                  <div className="p-6">
+                    <h3 className="text-2xl font-display font-bold mb-2">{pkg.name}</h3>
+                    <p className="text-muted-foreground mb-4">{pkg.description}</p>
                     <div className="mb-6">
-                      <span className="text-4xl font-semibold">{formatPrice(pkg.price)}</span>
+                      <span className="text-3xl font-display font-bold">{formatPrice(pkg.price)}</span>
                     </div>
                     
-                    <ul className="space-y-4 mb-8">
+                    <ul className="space-y-3 mb-8">
                       {pkg.features.map((feature, i) => (
                         <li key={i} className="flex items-start">
-                          <Check className="h-5 w-5 text-[#0070c9] flex-shrink-0 mr-3 mt-0.5" />
-                          <span className="text-gray-700 dark:text-gray-300">{feature}</span>
+                          <Check className="h-5 w-5 text-primary flex-shrink-0 mr-3 mt-0.5" />
+                          <span>{feature}</span>
                         </li>
                       ))}
                     </ul>
                     
                     <div className="flex flex-col gap-3 mt-auto">
                       <Button 
-                        className={`
-                          ${pkg.recommended ? 'bg-[#0070c9]' : 'bg-[#0070c9]'} 
-                          hover:bg-[#0070c9]/90 text-white rounded-full py-6 text-lg font-medium
-                        `}
+                        className={pkg.recommended ? "bg-primary hover:bg-primary/90" : ""}
                         onClick={() => {
-                          handleAddToCart(packageService);
+                          addToCart(packageService);
                         }}
                       >
-                        <Plus size={18} className="mr-2" />
+                        <Plus size={16} className="mr-2" />
                         Add to Cart
                       </Button>
-                      <Button 
-                        variant="outline" 
-                        className="border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 rounded-full py-6 text-lg font-medium hover:bg-gray-100 dark:hover:bg-gray-900" 
-                        asChild
-                      >
+                      <Button variant="outline" asChild>
                         <Link to="/contact">
                           Contact Us
                         </Link>
@@ -364,85 +355,86 @@ const ServicesPage = () => {
       </section>
 
       {/* Process Section */}
-      <section className="py-24 bg-white dark:bg-black">
-        <div className="container px-6 mx-auto max-w-6xl">
+      <section className="py-20 bg-white">
+        <div className="container px-6 mx-auto">
           <div className="max-w-3xl mx-auto text-center mb-16">
-            <h5 className="text-[#0070c9] font-medium mb-4">Our Process</h5>
-            <h2 className="text-3xl md:text-5xl font-semibold mb-6">
+            <div className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-primary/10 text-primary mb-4">
+              <span>Our Process</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
               How We Work
             </h2>
-            <p className="text-xl text-gray-500 dark:text-gray-400">
+            <p className="text-lg text-muted-foreground">
               Our structured approach ensures quality results and a smooth experience.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-5 gap-6">
-            {[
-              {
-                title: "Discovery & Analysis",
-                description: "We begin by understanding your business, goals, target audience, and competitive landscape to inform our strategy."
-              },
-              {
-                title: "Strategy Development",
-                description: "Based on our findings, we develop a comprehensive branding and marketing strategy tailored to your objectives."
-              },
-              {
-                title: "Creative Execution",
-                description: "Our creative team brings the strategy to life through design, content creation, and development."
-              },
-              {
-                title: "Implementation",
-                description: "We implement the brand assets and marketing materials across all relevant platforms and channels."
-              },
-              {
-                title: "Evaluation & Refinement",
-                description: "We continuously monitor performance and make refinements to optimize results."
-              }
-            ].map((step, index) => (
-              <div 
-                key={index}
-                className="rounded-3xl bg-gray-50 dark:bg-neutral-900 p-8 flex flex-col h-full"
-              >
-                <div className="h-12 w-12 rounded-full bg-[#0070c9] flex items-center justify-center text-white font-medium text-lg mb-6">
-                  {index + 1}
+          <div className="relative max-w-4xl mx-auto">
+            <div className="absolute left-12 top-0 bottom-0 w-0.5 bg-border md:left-1/2 md:-ml-0.5"></div>
+            
+            <div className="space-y-12">
+              {[
+                {
+                  title: "Discovery & Analysis",
+                  description: "We begin by understanding your business, goals, target audience, and competitive landscape to inform our strategy."
+                },
+                {
+                  title: "Strategy Development",
+                  description: "Based on our findings, we develop a comprehensive branding and marketing strategy tailored to your objectives."
+                },
+                {
+                  title: "Creative Execution",
+                  description: "Our creative team brings the strategy to life through design, content creation, and development."
+                },
+                {
+                  title: "Implementation",
+                  description: "We implement the brand assets and marketing materials across all relevant platforms and channels."
+                },
+                {
+                  title: "Evaluation & Refinement",
+                  description: "We continuously monitor performance and make refinements to optimize results."
+                }
+              ].map((step, index) => (
+                <div key={index} className="relative flex items-start">
+                  <div className="absolute left-0 mt-1 md:left-1/2 md:-ml-6">
+                    <div className="h-12 w-12 rounded-full bg-primary flex items-center justify-center text-white font-medium text-lg">
+                      {index + 1}
+                    </div>
+                  </div>
+                  <div className={`ml-20 md:w-1/2 ${index % 2 === 0 ? 'md:ml-0 md:mr-auto md:pr-16 md:text-right' : 'md:ml-auto md:pl-16'}`}>
+                    <h3 className="text-xl font-medium mb-2">{step.title}</h3>
+                    <p className="text-muted-foreground">{step.description}</p>
+                  </div>
                 </div>
-                <h3 className="text-xl font-semibold mb-4">{step.title}</h3>
-                <p className="text-gray-600 dark:text-gray-300">{step.description}</p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-gradient-to-b from-[#0070c9] to-[#134e7c] text-white">
-        <div className="container px-6 mx-auto max-w-4xl text-center">
-          <h2 className="text-3xl md:text-5xl font-semibold mb-8">
-            Ready to Transform Your Brand?
-          </h2>
-          <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
-            Contact us today to discuss your project or explore our service packages.
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-6">
-            <Button 
-              size="lg" 
-              className="bg-white text-[#0070c9] hover:bg-white/90 rounded-full py-6 px-8 text-lg font-medium" 
-              asChild
-            >
-              <Link to="/contact">
-                Contact Us
-              </Link>
-            </Button>
-            <Button 
-              size="lg" 
-              className="bg-transparent text-white hover:bg-white/10 border border-white rounded-full py-6 px-8 text-lg font-medium"
-              asChild
-            >
-              <Link to="/cart">
-                View Cart
-                <ArrowRight size={18} className="ml-2" />
-              </Link>
-            </Button>
+      <section className="py-20 bg-primary text-white">
+        <div className="container px-6 mx-auto">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 animate-fade-up">
+              Ready to Transform Your Brand?
+            </h2>
+            <p className="text-lg text-white/80 mb-8 animate-fade-up" style={{ animationDelay: "100ms" }}>
+              Contact us today to discuss your project or explore our service packages.
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center gap-4 animate-fade-up" style={{ animationDelay: "200ms" }}>
+              <Button size="lg" variant="secondary" asChild>
+                <Link to="/contact">
+                  Contact Us
+                </Link>
+              </Button>
+              <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10" asChild>
+                <Link to="/cart">
+                  View Cart
+                  <ArrowRight size={16} className="ml-2" />
+                </Link>
+              </Button>
+            </div>
           </div>
         </div>
       </section>

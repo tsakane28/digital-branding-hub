@@ -62,7 +62,7 @@ const CartPage = () => {
       </section>
 
       {/* Cart Section */}
-      <section className="py-16 bg-secondary">
+      <section className="py-16 bg-white">
         <div className="container px-6 mx-auto">
           {showEmptyState ? (
             <div className="max-w-md mx-auto text-center py-16 animate-fade-up">
@@ -85,7 +85,7 @@ const CartPage = () => {
           ) : (
             <div className="grid lg:grid-cols-3 gap-10">
               <div className="lg:col-span-2 animate-fade-right">
-                <div className="bg-secondary rounded-xl border border-border shadow-sm p-6">
+                <div className="bg-white rounded-xl border border-border shadow-sm p-6">
                   <h2 className="text-2xl font-display font-bold mb-6">Cart Items</h2>
                   
                   {cartItems.length > 0 ? (
@@ -155,7 +155,7 @@ const CartPage = () => {
               </div>
 
               <div className="animate-fade-left">
-                <div className="bg-secondary rounded-xl border border-border shadow-sm p-6 sticky top-24">
+                <div className="bg-white rounded-xl border border-border shadow-sm p-6 sticky top-24">
                   <h2 className="text-2xl font-display font-bold mb-6">Order Summary</h2>
 
                   <div className="space-y-3 mb-6">
@@ -291,7 +291,7 @@ const CartPage = () => {
                   Schedule a Consultation
                 </Link>
               </Button>
-              <Button size="lg" variant="outline" className="bg-primary text-white border-white hover:bg-white/10" asChild>
+              <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10" asChild>
                 <Link to="/services">
                   Browse Services
                   <ArrowRight size={16} className="ml-2" />
